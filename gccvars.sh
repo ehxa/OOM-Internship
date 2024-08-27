@@ -1,0 +1,15 @@
+export DIR=$HOME/wrf/libs
+export CC=gcc
+export CXX=g++
+export FC=gfortran
+export FCFLAGS="-m64"
+export F77=gfortran
+export FFLAGS="-m64"
+export HDF5=$DIR
+export LD_LIBRARY_PATH=$DIR/lib:$LD_LIBRARY_PATH
+export CPPFLAGS=-I$DIR/include 
+export LDFLAGS=-L$DIR/lib
+export PATH=$DIR/bin:$PATH
+export JASPERLIB=$DIR/lib
+export JASPERINC=$DIR/include
+export NETCDF=$DIR
