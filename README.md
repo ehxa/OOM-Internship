@@ -1,1 +1,1 @@
-Master thesis's internship files at OOM.
+Master thesis's at OOM internship files. 
