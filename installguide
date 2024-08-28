@@ -88,7 +88,7 @@ export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./conf
 ./compile
 
 #Prepare WPS
-cd $HOME/wrf/DATA && wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz 
+cd $HOME/wrf/Downloads && wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz 
 tar -xvzf geog_high_res_mandatory.tar.gz -C $HOME/wrf/WRF
 cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
 cd $HOME/wrf/DATA && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f000 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f003 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f006 
@@ -114,6 +114,14 @@ wgrib gfs.t00z.pgrb2.0p25.f006
 #Change interval in WPS
 cd $HOME/wrf/WRF/WPS
 vim namelist.wps
+
+#Run ungrib
+./ungrib.exe
+ls -ls FILE* #confirm that these files were created
+
+#Run metgrid
+./metgrid.exe >& | tee log.metgrid
+
 
 #Prepare WRF
 cd $HOME/wrf/WRF/WRF/test em_real && ln -sf $HOME/wrf/WRF/WPS/met_em* .
