@@ -95,7 +95,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=$DIR
 make
 make install
 export PATH=/home/swe/wrf/wgrib2-3.3.0/build/install/bin:$PATH
-wgrib2 #verify that it is working
+wgrib2 --version #verify that it is working
 
 #Verify GFS files
 cd $HOME/wrf/DATA
@@ -129,6 +129,6 @@ tail rsl.error.0000 #output shall print "SUCCESSFUL"
 ls -ls wrf* #check if files wrfbdy_d01, and wrfinput_d0* were created
 
 #Run WRF
-mpirun -np 8 ./wrf.exe 
+mpirun -np 1 ./wrf.exe #use -np n according to the number of CPU cores
 tail rsl.error.0000 #output shall print "SUCCESSFUL"
-ls -ls wrf*
+ls -ls wrf* #check if files wrfbdy_d01, wrfout_d0* were created
