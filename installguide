@@ -98,11 +98,21 @@ ls -ls geo_em* #confirm that files were created successfully
 ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
 
 #Install wgrib2
-cd $HOME/swe/wrf && wget https://github.com/NOAA-EMC/wgrib2/archive/refs/tags/v3.3.0.tar.gz && tar -xzvf v3.3.0.tar.gz && cd wgrib2-3.3.0 && mkdir build && cd build
+cd $HOME/wrf && wget https://github.com/NOAA-EMC/wgrib2/archive/refs/tags/v3.3.0.tar.gz && tar -xzvf v3.3.0.tar.gz && cd wgrib2-3.3.0 && mkdir build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=$DIR
 make
 make install
 export PATH=/home/swe/wrf/wgrib2-3.3.0/build/install/bin:$PATH
 wgrib2 #verify that it is working
 
-#
+#Verify GFS files
+cd $HOME/wrf/DATA
+wgrib gfs.t00z.pgrb2.0p25.f000 | grep “d=20240823”
+wgrib gfs.t00z.pgrb2.0p25.f003 | grep “d=20240823”
+wgrib gfs.t00z.pgrb2.0p25.f006 | grep “d=20240823”
+
+#Change interval in WPS
+cd $HOME/wrf/WRF/WPS
+vim namespace.wps
+
+
