@@ -107,12 +107,18 @@ wgrib2 #verify that it is working
 
 #Verify GFS files
 cd $HOME/wrf/DATA
-wgrib gfs.t00z.pgrb2.0p25.f000 | grep “d=20240823”
-wgrib gfs.t00z.pgrb2.0p25.f003 | grep “d=20240823”
-wgrib gfs.t00z.pgrb2.0p25.f006 | grep “d=20240823”
+wgrib gfs.t00z.pgrb2.0p25.f000
+wgrib gfs.t00z.pgrb2.0p25.f003
+wgrib gfs.t00z.pgrb2.0p25.f006 
 
 #Change interval in WPS
 cd $HOME/wrf/WRF/WPS
-vim namespace.wps
+vim namelist.wps
 
+#Prepare WRF
+cd $HOME/wrf/WRF/WRF/test em_real && ln -sf $HOME/wrf/WRF/WPS/met_em* .
+
+#Run WRF
+mpirun -np 1 ./real.exe
+tail rsl.error.0000 #output shall print "SUCCESSFUL"
 
