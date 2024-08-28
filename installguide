@@ -30,7 +30,8 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 #source $HOME/wrf/icxvars.sh
-source $HOME/wrf/gccvars.sh
+source $HOME/wrf/gccvars.sh #RHEL based
+. $HOME/wrf/gccvars.sh #Debian based
 
 #Install zlib
 cd $HOME/wrf/libs/zlib-1.2.11 && ./configure --prefix=$DIR
@@ -63,15 +64,6 @@ make
 make install
 
 #Install jasper
-#cd $HOME/wrf/libs/jasper-version-4.2.4 && export SOURCE_DIR=$HOME/wrf/libs/jasper-version-4.2.4 && export BUILD_DIR=$HOME/wrf/libs/jasper-build && export INSTALL_DIR=$DIR
-#cmake -H$SOURCE_DIR -B$BUILD_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx \ $OPTIONS
-#cmake --build $BUILD_DIR 
-#wget -c https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz && cd $HOME/wrf/libs/jasper-1.900.1
-#vim configure.ac
-#Add after AC_PROG_CC
-# i
-# CFLAGS="-std=gnu89 -Wno-implicit-function-declaration -Wno-incompatible-function-pointer-types"
-# :wq
 cd $HOME/wrf/libs/jasper-1.900.1
 autoreconf -i && ./configure --prefix=$DIR
 make
@@ -107,26 +99,36 @@ wgrib2 #verify that it is working
 
 #Verify GFS files
 cd $HOME/wrf/DATA
-wgrib gfs.t00z.pgrb2.0p25.f000
-wgrib gfs.t00z.pgrb2.0p25.f003
-wgrib gfs.t00z.pgrb2.0p25.f006 
+wgrib2 gfs.t00z.pgrb2.0p25.f000
+wgrib2 gfs.t00z.pgrb2.0p25.f003
+wgrib2 gfs.t00z.pgrb2.0p25.f006 
 
 #Change interval in WPS
 cd $HOME/wrf/WRF/WPS
-vim namelist.wps
+vim namelist.wps #modify start_date, end_date, ann interval_seconds (10800)
 
 #Run ungrib
 ./ungrib.exe
 ls -ls FILE* #confirm that these files were created
 
 #Run metgrid
-./metgrid.exe >& | tee log.metgrid
+./metgrid.exe |& tee log.metgrid
 
 
 #Prepare WRF
-cd $HOME/wrf/WRF/WRF/test em_real && ln -sf $HOME/wrf/WRF/WPS/met_em* .
+cd $HOME/wrf/WRF/WRF/test/em_real && ln -sf $HOME/wrf/WRF/WPS/met_em* .
+vim namelist.input
+#modify run_hours, start_year, start_month, start_day, start_hour, end_year, end_month, end_day, end_hour
+#e_sn, e_we, dx, dy, j_parent_start
+
+
+#Run WRF test
+mpirun -np 1 ./real.exe
+#if any other parameters need to be changed, use cat rsl.error.0000 to check which ones
+tail rsl.error.0000 #output shall print "SUCCESSFUL"
+ls -ls wrf* #check if files wrfbdy_d01, and wrfinput_d0* were created
 
 #Run WRF
-mpirun -np 1 ./real.exe
+mpirun -np 8 ./wrf.exe 
 tail rsl.error.0000 #output shall print "SUCCESSFUL"
-
+ls -ls wrf*
