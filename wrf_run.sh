@@ -6,7 +6,7 @@ host_cpu=$(nproc)
 
 read -p "How many CPUs? (Max: $host_cpu): " cpu
 
-while ! [[$cpu =~ $re]] || [[$cpu -gt host_cpu]]; do
+while ! [[$cpu =~ $re]] || [[$cpu -gt $host_cpu]]; do
     echo "Invalid option, try again."
     read -p "How many CPUs? (Max: $host_cpu): " cpu
 done
