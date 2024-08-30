@@ -4,13 +4,11 @@ echo "Welcome to WRF!"
 re='^[0-9]+$'
 cpu=""
 
-echo "How many CPUs?"
-read cpu
+read -p "How many CPUs?" cpu
 
 while ! [[ $cpu =~ $re ]]; do
     echo "Invalid option, try again."
-    echo "How many CPUs?"
-    read cpu
+    read -p "How many CPUs?" cpu
 done
 
 echo "How do you want to run it? Single-run (s) or Incrementally (i)"
@@ -18,11 +16,10 @@ read choice
 
 while [[ $choice != "i" && $choice != "s" ]]; do
     echo "Invalid option, try again."
-    echo "How do you want to run it? Single-run (s) or Incrementally (i)"
-    read choice
+    read -p "How do you want to run it? Single-run (s) or Incrementally (i)" choice
 done
 
-[[ $choice == "i" ]] && j=0 || j=$cpu
+[[ $choice == "i" ]] && j=1 || j=$cpu
 
 while [[ $j -le $cpu ]]; do
     echo "WRF with $j CPU(s) started"
