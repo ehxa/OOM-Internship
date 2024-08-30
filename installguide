@@ -89,7 +89,7 @@ cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
 cd $HOME/wrf/DATA && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f000 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f003 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f006 
 cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
 ls -ls geo_em* #confirm that files were created successfully
-./link_grib.csh /home/swe/wrf/DATA
+./link_grib.csh $HOME/wrf/DATA
 ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
 
 #Install wgrib2
