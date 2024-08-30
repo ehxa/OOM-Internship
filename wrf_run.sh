@@ -1,6 +1,7 @@
 #!/bin/bash
 # Script for showing WRF start and end (date and time)
 echo "Welcome to WRF!"
+echo ""
 re='^[0-9]+$'
 host_cpu=$(nproc)
 
