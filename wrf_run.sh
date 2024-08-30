@@ -4,18 +4,18 @@ echo "Welcome to WRF!"
 re='^[0-9]+$'
 host_cpu=$(nproc)
 
-read -p "How many CPUs? (Max: $host_cpu) " cpu
+read -p "How many CPUs? (Max: $host_cpu): " cpu
 
 while ! [[ $cpu =~ $re ] || [[ $cpu -gt host_cpu]]]; do
     echo "Invalid option, try again."
-    read -p "How many CPUs? (Max: $host_cpu) " cpu
+    read -p "How many CPUs? (Max: $host_cpu): " cpu
 done
 
-read -p "How do you want to run it? Single-run (s) or Incrementally (i) " choice
+read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choice
 
 while [[ $choice != "i" && $choice != "s" ]]; do
     echo "Invalid option, try again."
-    read -p "How do you want to run it? Single-run (s) or Incrementally (i) " choice
+    read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choice
 done
 
 [[ $choice == "i" ]] && j=1 || j=$cpu
