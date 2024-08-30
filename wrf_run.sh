@@ -23,12 +23,12 @@ done
 
 [[ $choice == "i" ]] && j=1 || j=$cpu
 
-while [[ $j -le $cpu ]]; do
+while [[ $j -le $cpu ]]; 
+    echo ""
     echo "WRF with $j CPU(s) started"
     date
     mpirun -np $j ./wrf.exe
     date
     echo "WRF with $j CPU(s) finished"
-    echo ""
     ((j++))
 done
