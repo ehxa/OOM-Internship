@@ -23,7 +23,7 @@ done
 while [[ $j -le $cpu ]]; do
     echo "WRF with $j CPU(s) started"
     date
-    #mpirun -np $j ./wrf.exe
+    mpirun -np $j ./wrf.exe
     date
     echo "WRF with $j CPU(s) finished"
     ((j++))
