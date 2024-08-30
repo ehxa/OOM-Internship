@@ -70,7 +70,7 @@ make
 make install
 
 #Install WRF
-cd $HOME/wrf/WRF/WRF && export LDFLAGS="-L/home/swe/wrf/libs/lib -lhdf5 -lhdf5_hl -lhdf5_fortran -lhdf5hl_fortran -lnetcdf -lnetcdff -lmpi -lmpifort -lmpich -lmpicxx -ljasper -lpng16 -lz"
+cd $HOME/wrf/WRF/WRF && export LDFLAGS="-L$HOME/wrf/libs/lib -lhdf5 -lhdf5_hl -lhdf5_fortran -lhdf5hl_fortran -lnetcdf -lnetcdff -lmpi -lmpifort -lmpich -lmpicxx -ljasper -lpng16 -lz"
 #IMPORTANT (Ubuntu and Ubuntu based only): In Ubuntu, a error is raised due to line 919 of configure.
 vim configure #change the operator from == to = in line 919. Other OS can skip this step.
 ./clean -a && ./configure  #options 78 and 1 with icx or 34 and 1 with gcc
@@ -97,7 +97,7 @@ cd $HOME/wrf && wget https://github.com/NOAA-EMC/wgrib2/archive/refs/tags/v3.3.0
 cmake .. -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=$DIR
 make
 make install
-export PATH=/home/swe/wrf/wgrib2-3.3.0/build/install/bin:$PATH
+export PATH=$HOME/wrf/wgrib2-3.3.0/build/install/bin:$PATH
 wgrib2 --version #verify that it is working
 
 #Verify GFS files
