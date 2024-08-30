@@ -18,12 +18,12 @@ while [[$choice != "i" && $choice != "s"]]; do
     read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choice
 done
 
-[[ $choice == "i" ]] && j=1 || j=$cpu
+[[$choice == "i"]] && j=1 || j=$cpu
 
 while [[$j -le $cpu]]; do
     echo "WRF with $j CPU(s) started"
     date
-    mpirun -np $j ./wrf.exe
+    #mpirun -np $j ./wrf.exe
     date
     echo "WRF with $j CPU(s) finished"
     ((j++))
