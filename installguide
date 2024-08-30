@@ -71,9 +71,12 @@ make install
 
 #Install WRF
 cd $HOME/wrf/WRF/WRF && export LDFLAGS="-L/home/swe/wrf/libs/lib -lhdf5 -lhdf5_hl -lhdf5_fortran -lhdf5hl_fortran -lnetcdf -lnetcdff -lmpi -lmpifort -lmpich -lmpicxx -ljasper -lpng16 -lz"
-./clean -a && ./configure #options 78 and 1 or 34 and 1 with gcc
+#IMPORTANT (Ubuntu and Ubuntu based only): In Ubuntu, a error is raised due to line 919 of configure.
+vim configure #change the operator from == to = in line 919. Other OS can skip this step.
+./clean -a && ./configure  #options 78 and 1 with icx or 34 and 1 with gcc
+
 cp share/landread.c share/landread.backup && cp share/landread.c.dist share/landread.c
-./compile em_real 
+./compile em_real
 
 #Install WPS
 export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./configure #option 3
