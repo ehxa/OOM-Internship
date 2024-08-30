@@ -2,13 +2,13 @@
 # Script for showing WRF start and end (date and time)
 echo "Welcome to WRF!"
 re='^[0-9]+$'
-cpu=""
+host_cpu = $(nproc)
 
-read -p "How many CPUs? " cpu
+read -p "How many CPUs? (Max: $host_cpu)" cpu
 
-while ! [[ $cpu =~ $re ]]; do
+while ! [[ $cpu =~ $re ] || [[ $cpu -gt host_cpu]]]; do
     echo "Invalid option, try again."
-    read -p "How many CPUs? " cpu
+    read -p "How many CPUs? (Max: $host_cpu)" cpu
 done
 
 read -p "How do you want to run it? Single-run (s) or Incrementally (i) " choice
