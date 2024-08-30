@@ -2,7 +2,7 @@
 # Script for showing WRF start and end (date and time)
 echo "Welcome to WRF!"
 re='^[0-9]+$'
-host_cpu = $(nproc)
+host_cpu=$(nproc)
 
 read -p "How many CPUs? (Max: $host_cpu) " cpu
 
