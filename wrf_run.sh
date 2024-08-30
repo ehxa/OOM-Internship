@@ -4,7 +4,7 @@ echo "Welcome to WRF!"
 re='^[0-9]+$'
 cpu=""
 
-read -p "How many CPUs?" cpu
+read -p "How many CPUs? " cpu
 
 while ! [[ $cpu =~ $re ]]; do
     echo "Invalid option, try again."
