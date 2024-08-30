@@ -8,6 +8,7 @@ read -p "How many CPUs? (Max: $host_cpu): " cpu
 
 while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
     echo "Invalid option, try again."
+    echo ""
     read -p "How many CPUs? (Max: $host_cpu): " cpu
 done
 
@@ -15,6 +16,7 @@ read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choic
 
 while [[ $choice != "i" && $choice != "s" ]]; do
     echo "Invalid option, try again."
+    echo ""
     read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choice
 done
 
@@ -23,8 +25,9 @@ done
 while [[ $j -le $cpu ]]; do
     echo "WRF with $j CPU(s) started"
     date
-    #mpirun -np $j ./wrf.exe
+    mpirun -np $j ./wrf.exe
     date
     echo "WRF with $j CPU(s) finished"
+    echo ""
     ((j++))
 done
