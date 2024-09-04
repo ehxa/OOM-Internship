@@ -4,7 +4,8 @@ echo "Welcome to WRF!"
 echo ""
 re='^[0-9]+$'
 host_cpu=$(nproc)
-
+date=$(date)
+{
 read -p "How many CPUs? (Max: $host_cpu): " cpu
 
 while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
@@ -43,3 +44,4 @@ while [[ $j -le $cpu ]]; do
     echo "WRF with $j CPU(s) finished"
     ((j++))
 done
+} 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
