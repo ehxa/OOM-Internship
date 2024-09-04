@@ -1,0 +1,31 @@
+Beginning WRF with 1 CPU(s) in Single-run mode
+
+WRF with 1 CPU(s) started
+Start: qua 04 set 2024 12:36:44 WEST
+Finish: qua 04 set 2024 12:36:44 WEST
+
+rsl.error.0000 result:
+ ids,ide,jds,jde            1          74           1          61
+ ims,ime,jms,jme           -4          44          -4          37
+ ips,ipe,jps,jpe            1          37           1          30
+ *************************************
+DYNAMICS OPTION: Eulerian Mass Coordinate
+   alloc_space_field: domain            1 ,              73835556  bytes allocated
+  med_initialdata_input: calling input_input
+   Input data is acceptable to use: wrfinput_d01
+ CURRENT DATE          = 2024-08-25_00:00:00
+ SIMULATION START DATE = 2024-08-25_00:00:00
+
+rsl.out.0000 result:
+ ids,ide,jds,jde            1          74           1          61
+ ims,ime,jms,jme           -4          44          -4          37
+ ips,ipe,jps,jpe            1          37           1          30
+ *************************************
+DYNAMICS OPTION: Eulerian Mass Coordinate
+   alloc_space_field: domain            1 ,              73835556  bytes allocated
+  med_initialdata_input: calling input_input
+   Input data is acceptable to use: wrfinput_d01
+ CURRENT DATE          = 2024-08-25_00:00:00
+ SIMULATION START DATE = 2024-08-25_00:00:00
+
+WRF with 1 CPU(s) finished
