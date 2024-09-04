@@ -31,12 +31,15 @@ while [[ $j -le $cpu ]]; do
     date 
     n=0 #count variable to print all rsl.out files
     while [[ $n -lt $j ]]; do
+        echo ""
         echo "rsl.error.000$n result:"
         tail rsl.error.000$n
+        echo ""
         echo "rsl.out.000$n result:"
         tail rsl.out.000$n
         ((n++))
     done
+    echo ""
     echo "WRF with $j CPU(s) finished"
     ((j++))
 done
