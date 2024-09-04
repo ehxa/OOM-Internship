@@ -4,8 +4,8 @@ echo "Welcome to WRF!"
 echo ""
 re='^[0-9]+$'
 host_cpu=$(nproc)
-date=$(date)
-{
+date=$(date +"%Y%m%d-%H%M%S")
+
 read -p "How many CPUs? (Max: $host_cpu): " cpu
 
 while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
@@ -22,7 +22,10 @@ while [[ $choice != "i" && $choice != "s" ]]; do
     read -p "How do you want to run it? Single-run (s) or Incrementally (i): " choice
 done
 
-[[ $choice == "i" ]] && j=1 || j=$cpu
+echo ""
+
+{
+[[ $choice == "i" ]] && { j=1; echo "Beginning WRF with $cpu cycles in Incrementally mode"; } || { j=$cpu; echo "Beginning WRF with $cpu CPU(s) in Single-run mode"; }
 
 while [[ $j -le $cpu ]]; do
     echo ""
