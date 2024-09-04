@@ -30,7 +30,7 @@ while [[ $j -le $cpu ]]; do
     #mpirun -np $j ./wrf.exe
     date 
     n=0 #count variable to print all rsl.out files
-    while [[ $n -le $j ]]; do
+    while [[ $n -l $j ]]; do
         echo "rsl.error.000$n result:"
         tail rsl.error.000$n
         echo "rsl.out.000$n result:"
