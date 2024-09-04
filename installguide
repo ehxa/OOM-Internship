@@ -138,3 +138,6 @@ ls -ls wrf* #check if files wrfbdy_d01, and wrfinput_d0* were created
 mpirun -np 1 ./wrf.exe #use -np n according to the number of CPU cores
 tail rsl.error.0000 #output shall print "SUCCESSFUL"
 ls -ls wrf* #check if files wrfbdy_d01, wrfout_d0* were created
+
+#Run WRF from script
+$HOME/wrf/OOM-Internship/scripts/wrf_run.sh
