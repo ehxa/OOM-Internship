@@ -23,7 +23,7 @@ done
 
 [[ $choice == "i" ]] && j=1 || j=$cpu
 
-while [[ $j -le $cpu ]]; 
+while [[ $j -le $cpu ]]; do
     echo ""
     echo "WRF with $j CPU(s) started"
     date
