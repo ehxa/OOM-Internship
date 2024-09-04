@@ -27,8 +27,14 @@ while [[ $j -le $cpu ]]; do
     echo ""
     echo "WRF with $j CPU(s) started"
     date
-    mpirun -np $j ./wrf.exe
-    date
+    #mpirun -np $j ./wrf.exe
+    date 
+    n=0 #count variable to print all rsl.out files
+    while [[ $n -le $j ]]; do
+        echo "rsl.error.000$n result:"
+        tail rsl.error.000$n
+        echo "rsl.out.000$n result:"
+        tail rsl.out.000$n
     echo "WRF with $j CPU(s) finished"
     ((j++))
 done
