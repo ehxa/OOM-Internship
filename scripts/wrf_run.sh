@@ -34,8 +34,6 @@ while [[ $j -le $cpu ]]; do
     #mpirun -np $j ./wrf.exe
     echo "Finish: $(date)"
     n=0 #count variable to print all rsl.out files
-    echo ""
-    echo "WRF with $j CPU(s) finished"
     while [[ $n -lt $j ]]; do
         echo ""
         echo "rsl.error.000$n result:"
@@ -45,6 +43,8 @@ while [[ $j -le $cpu ]]; do
         tail rsl.out.000$n
         ((n++))
     done
+    echo ""
+    echo "WRF with $j CPU(s) finished"
     ((j++))
 done
 } 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
