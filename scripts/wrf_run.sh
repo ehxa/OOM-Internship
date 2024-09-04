@@ -31,7 +31,7 @@ while [[ $j -le $cpu ]]; do
     echo ""
     echo "WRF with $j CPU(s) started"
     echo "Start: $(date)"
-    #mpirun -np $j ./wrf.exe
+    mpirun -np $j ./wrf.exe
     echo "Finish: $(date)"
     n=0 #count variable to print all rsl.out files
     while [[ $n -lt $j ]]; do
