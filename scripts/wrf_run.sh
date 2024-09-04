@@ -35,6 +35,7 @@ while [[ $j -le $cpu ]]; do
         tail rsl.error.000$n
         echo "rsl.out.000$n result:"
         tail rsl.out.000$n
+    done
     echo "WRF with $j CPU(s) finished"
     ((j++))
 done
