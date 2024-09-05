@@ -140,4 +140,5 @@ tail rsl.error.0000 #output shall print "SUCCESSFUL"
 ls -ls wrf* #check if files wrfbdy_d01, wrfout_d0* were created
 
 #Run WRF from script
+chmod u+x $HOME/wrf/OOM-Internship/scripts/wrf_run.sh #Add run permissions to the user
 $HOME/wrf/OOM-Internship/scripts/wrf_run.sh
