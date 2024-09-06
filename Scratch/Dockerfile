@@ -15,4 +15,4 @@ COPY /libs /wrf/libs
 
 WORKDIR /wrf/WRF/WRF/test/em_real
 
-CMD ["mpirun -np 1 ./wrf.exe"]
+CMD ["mpirun", "-np", "1", "./wrf.exe"]
