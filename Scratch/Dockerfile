@@ -2,7 +2,7 @@ FROM scratch
 
 ENV DIR=/wrf/libs
 ENV HDF5=$DIR
-ENV LD_LIBRARY_PATH=$DIR/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$DIR/lib
 ENV CPPFLAGS=-I$DIR/include
 ENV LDFLAGS=-L$DIR/lib
 ENV PATH=$DIR/bin:$PATH
@@ -14,5 +14,3 @@ COPY /WRF /wrf/WRF
 COPY /libs /wrf/libs
 
 WORKDIR /wrf/WRF/WRF/test/em_real
-
-CMD ["mpiexec.hydra", "-np", "1", "./wrf.exe"]
