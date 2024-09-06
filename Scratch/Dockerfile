@@ -10,8 +10,8 @@ ENV JASPERLIB=$DIR/lib
 ENV JASPERINC=$DIR/include
 ENV NETCDF=$DIR
 
-COPY /home/oom/wrf/WRF /wrf/WRF
-COPY /home/oom/wrf/libs /wrf/libs
+COPY /WRF /wrf/WRF
+COPY /libs /wrf/libs
 
 WORKDIR /wrf/WRF/WRF/test/em_real
 
