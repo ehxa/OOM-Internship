@@ -1,2 +1,18 @@
 FROM scratch
-COPY WRF /WRF
+
+ENV DIR=/wrf/libs
+ENV HDF5=$DIR
+ENV LD_LIBRARY_PATH=$DIR/lib:$LD_LIBRARY_PATH
+ENV CPPFLAGS=-I$DIR/include
+ENV LDFLAGS=-L$DIR/lib
+ENV PATH=$DIR/bin:$PATH
+ENV JASPERLIB=$DIR/lib
+ENV JASPERINC=$DIR/include
+ENV NETCDF=$DIR
+
+COPY /home/oom/wrf/WRF /wrf/WRF
+COPY /home/oom/wrf/libs /wrf/libs
+
+WORKDIR /wrf/WRF/WRF/test/em_real
+
+CMD ["mpirun -np 1 ./wrf.exe"]
