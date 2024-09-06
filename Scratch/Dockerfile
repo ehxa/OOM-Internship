@@ -15,4 +15,6 @@ COPY /libs /wrf/libs
 
 WORKDIR /wrf/WRF/WRF/test/em_real
 
+RUN ln -sf /wrf/libs/bin/mpiexec.hydra /wrf/libs/bin/mpirun
+
 CMD ["mpirun", "-np", "1", "./wrf.exe"]
