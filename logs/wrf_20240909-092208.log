@@ -1,0 +1,329 @@
+Beginning WRF with 4 cycles in Incrementally mode
+
+WRF with 1 CPU(s) started
+Start: seg 09 set 2024 09:22:16 WEST
+Finish: seg 09 set 2024 09:22:16 WEST
+
+rsl.error.0000 result:
+Timing for main: time 2024-08-25_02:32:00 on domain   2:    1.47052 elapsed seconds
+Timing for main: time 2024-08-25_02:32:30 on domain   2:    1.64584 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   2:    1.51820 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   1:    6.15534 elapsed seconds
+Timing for main: time 2024-08-25_02:33:30 on domain   2:    1.36330 elapsed seconds
+Timing for main: time 2024-08-25_02:34:00 on domain   2:    1.46202 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   2:    1.47664 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   1:    5.80450 elapsed seconds
+Timing for main: time 2024-08-25_02:35:00 on domain   2:    1.33265 elapsed seconds
+conds
+
+rsl.out.0000 result:
+Timing for main: time 2024-08-25_02:37:30 on domain   2:    1.31565 elapsed seconds
+Timing for main: time 2024-08-25_02:37:30 on domain   1:    5.58038 elapsed seconds
+Timing for main: time 2024-08-25_02:38:00 on domain   2:    1.34500 elapsed seconds
+Timing for main: time 2024-08-25_02:38:30 on domain   2:    1.30961 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   2:    1.30778 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   1:    5.41650 elapsed seconds
+Timing for main: time 2024-08-25_02:39:30 on domain   2:    1.24071 elapsed seconds
+Timing for main: time 2024-08-25_02:40:00 on domain   2:    1.24849 elapsed seconds
+conds
+Timing for main: time 2024-08-25_02:40:30 on domain   1:    5.42763 elapsed seconds
+
+Present wrfout files:
+ 6508 -rw-rw-r-- 1 oom oom  6663034 set  6 12:36 wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-rw-r-- 1 oom oom  7870953 set  6 12:40 wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7956488 set  6 12:45 wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-rw-r-- 1 oom oom  7979627 set  4 14:12 wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-rw-r-- 1 oom oom  7972793 set  4 14:14 wrfout_d01_2024-08-25_04:00:00
+ 7776 -rw-rw-r-- 1 oom oom  7958606 set  4 14:17 wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957747 set  4 14:19 wrfout_d01_2024-08-25_06:00:00
+ 4808 -rw-rw-r-- 1 oom oom 12874330 set  6 12:36 wrfout_d02_2024-08-25_00:00:00
+15420 -rw-rw-r-- 1 oom oom 15790033 set  6 12:41 wrfout_d02_2024-08-25_01:00:00
+15760 -rw-rw-r-- 1 oom oom 16135288 set  6 12:45 wrfout_d02_2024-08-25_02:00:00
+15844 -rw-rw-r-- 1 oom oom 16223178 set  4 14:12 wrfout_d02_2024-08-25_03:00:00
+15860 -rw-rw-r-- 1 oom oom 16238196 set  4 14:14 wrfout_d02_2024-08-25_04:00:00
+15860 -rw-rw-r-- 1 oom oom 16240029 set  4 14:17 wrfout_d02_2024-08-25_05:00:00
+15784 -rw-rw-r-- 1 oom oom 16161613 set  4 14:19 wrfout_d02_2024-08-25_06:00:00
+
+WRF with 1 CPU(s) finished
+
+WRF with 2 CPU(s) started
+Start: seg 09 set 2024 09:22:16 WEST
+Finish: seg 09 set 2024 09:22:16 WEST
+
+rsl.error.0000 result:
+Timing for main: time 2024-08-25_02:32:00 on domain   2:    1.47052 elapsed seconds
+Timing for main: time 2024-08-25_02:32:30 on domain   2:    1.64584 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   2:    1.51820 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   1:    6.15534 elapsed seconds
+Timing for main: time 2024-08-25_02:33:30 on domain   2:    1.36330 elapsed seconds
+Timing for main: time 2024-08-25_02:34:00 on domain   2:    1.46202 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   2:    1.47664 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   1:    5.80450 elapsed seconds
+Timing for main: time 2024-08-25_02:35:00 on domain   2:    1.33265 elapsed seconds
+conds
+
+rsl.out.0000 result:
+Timing for main: time 2024-08-25_02:37:30 on domain   2:    1.31565 elapsed seconds
+Timing for main: time 2024-08-25_02:37:30 on domain   1:    5.58038 elapsed seconds
+Timing for main: time 2024-08-25_02:38:00 on domain   2:    1.34500 elapsed seconds
+Timing for main: time 2024-08-25_02:38:30 on domain   2:    1.30961 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   2:    1.30778 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   1:    5.41650 elapsed seconds
+Timing for main: time 2024-08-25_02:39:30 on domain   2:    1.24071 elapsed seconds
+Timing for main: time 2024-08-25_02:40:00 on domain   2:    1.24849 elapsed seconds
+conds
+Timing for main: time 2024-08-25_02:40:30 on domain   1:    5.42763 elapsed seconds
+
+rsl.error.0001 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0001 result:
+WRF TILE   1 IS     38 IE     74 JS      1 JE     30
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS     57 IE    112 JS      1 JE     48
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+Present wrfout files:
+ 6508 -rw-rw-r-- 1 oom oom  6663034 set  6 12:36 wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-rw-r-- 1 oom oom  7870953 set  6 12:40 wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7956488 set  6 12:45 wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-rw-r-- 1 oom oom  7979627 set  4 14:12 wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-rw-r-- 1 oom oom  7972793 set  4 14:14 wrfout_d01_2024-08-25_04:00:00
+ 7776 -rw-rw-r-- 1 oom oom  7958606 set  4 14:17 wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957747 set  4 14:19 wrfout_d01_2024-08-25_06:00:00
+ 4808 -rw-rw-r-- 1 oom oom 12874330 set  6 12:36 wrfout_d02_2024-08-25_00:00:00
+15420 -rw-rw-r-- 1 oom oom 15790033 set  6 12:41 wrfout_d02_2024-08-25_01:00:00
+15760 -rw-rw-r-- 1 oom oom 16135288 set  6 12:45 wrfout_d02_2024-08-25_02:00:00
+15844 -rw-rw-r-- 1 oom oom 16223178 set  4 14:12 wrfout_d02_2024-08-25_03:00:00
+15860 -rw-rw-r-- 1 oom oom 16238196 set  4 14:14 wrfout_d02_2024-08-25_04:00:00
+15860 -rw-rw-r-- 1 oom oom 16240029 set  4 14:17 wrfout_d02_2024-08-25_05:00:00
+15784 -rw-rw-r-- 1 oom oom 16161613 set  4 14:19 wrfout_d02_2024-08-25_06:00:00
+
+WRF with 2 CPU(s) finished
+
+WRF with 3 CPU(s) started
+Start: seg 09 set 2024 09:22:16 WEST
+Finish: seg 09 set 2024 09:22:16 WEST
+
+rsl.error.0000 result:
+Timing for main: time 2024-08-25_02:32:00 on domain   2:    1.47052 elapsed seconds
+Timing for main: time 2024-08-25_02:32:30 on domain   2:    1.64584 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   2:    1.51820 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   1:    6.15534 elapsed seconds
+Timing for main: time 2024-08-25_02:33:30 on domain   2:    1.36330 elapsed seconds
+Timing for main: time 2024-08-25_02:34:00 on domain   2:    1.46202 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   2:    1.47664 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   1:    5.80450 elapsed seconds
+Timing for main: time 2024-08-25_02:35:00 on domain   2:    1.33265 elapsed seconds
+conds
+
+rsl.out.0000 result:
+Timing for main: time 2024-08-25_02:37:30 on domain   2:    1.31565 elapsed seconds
+Timing for main: time 2024-08-25_02:37:30 on domain   1:    5.58038 elapsed seconds
+Timing for main: time 2024-08-25_02:38:00 on domain   2:    1.34500 elapsed seconds
+Timing for main: time 2024-08-25_02:38:30 on domain   2:    1.30961 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   2:    1.30778 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   1:    5.41650 elapsed seconds
+Timing for main: time 2024-08-25_02:39:30 on domain   2:    1.24071 elapsed seconds
+Timing for main: time 2024-08-25_02:40:00 on domain   2:    1.24849 elapsed seconds
+conds
+Timing for main: time 2024-08-25_02:40:30 on domain   1:    5.42763 elapsed seconds
+
+rsl.error.0001 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0001 result:
+WRF TILE   1 IS     38 IE     74 JS      1 JE     30
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS     57 IE    112 JS      1 JE     48
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.error.0002 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0002 result:
+WRF TILE   1 IS      1 IE     37 JS     31 JE     61
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS      1 IE     56 JS     49 JE     97
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+Present wrfout files:
+ 6508 -rw-rw-r-- 1 oom oom  6663034 set  6 12:36 wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-rw-r-- 1 oom oom  7870953 set  6 12:40 wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7956488 set  6 12:45 wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-rw-r-- 1 oom oom  7979627 set  4 14:12 wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-rw-r-- 1 oom oom  7972793 set  4 14:14 wrfout_d01_2024-08-25_04:00:00
+ 7776 -rw-rw-r-- 1 oom oom  7958606 set  4 14:17 wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957747 set  4 14:19 wrfout_d01_2024-08-25_06:00:00
+ 4808 -rw-rw-r-- 1 oom oom 12874330 set  6 12:36 wrfout_d02_2024-08-25_00:00:00
+15420 -rw-rw-r-- 1 oom oom 15790033 set  6 12:41 wrfout_d02_2024-08-25_01:00:00
+15760 -rw-rw-r-- 1 oom oom 16135288 set  6 12:45 wrfout_d02_2024-08-25_02:00:00
+15844 -rw-rw-r-- 1 oom oom 16223178 set  4 14:12 wrfout_d02_2024-08-25_03:00:00
+15860 -rw-rw-r-- 1 oom oom 16238196 set  4 14:14 wrfout_d02_2024-08-25_04:00:00
+15860 -rw-rw-r-- 1 oom oom 16240029 set  4 14:17 wrfout_d02_2024-08-25_05:00:00
+15784 -rw-rw-r-- 1 oom oom 16161613 set  4 14:19 wrfout_d02_2024-08-25_06:00:00
+
+WRF with 3 CPU(s) finished
+
+WRF with 4 CPU(s) started
+Start: seg 09 set 2024 09:22:16 WEST
+Finish: seg 09 set 2024 09:22:16 WEST
+
+rsl.error.0000 result:
+Timing for main: time 2024-08-25_02:32:00 on domain   2:    1.47052 elapsed seconds
+Timing for main: time 2024-08-25_02:32:30 on domain   2:    1.64584 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   2:    1.51820 elapsed seconds
+Timing for main: time 2024-08-25_02:33:00 on domain   1:    6.15534 elapsed seconds
+Timing for main: time 2024-08-25_02:33:30 on domain   2:    1.36330 elapsed seconds
+Timing for main: time 2024-08-25_02:34:00 on domain   2:    1.46202 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   2:    1.47664 elapsed seconds
+Timing for main: time 2024-08-25_02:34:30 on domain   1:    5.80450 elapsed seconds
+Timing for main: time 2024-08-25_02:35:00 on domain   2:    1.33265 elapsed seconds
+conds
+
+rsl.out.0000 result:
+Timing for main: time 2024-08-25_02:37:30 on domain   2:    1.31565 elapsed seconds
+Timing for main: time 2024-08-25_02:37:30 on domain   1:    5.58038 elapsed seconds
+Timing for main: time 2024-08-25_02:38:00 on domain   2:    1.34500 elapsed seconds
+Timing for main: time 2024-08-25_02:38:30 on domain   2:    1.30961 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   2:    1.30778 elapsed seconds
+Timing for main: time 2024-08-25_02:39:00 on domain   1:    5.41650 elapsed seconds
+Timing for main: time 2024-08-25_02:39:30 on domain   2:    1.24071 elapsed seconds
+Timing for main: time 2024-08-25_02:40:00 on domain   2:    1.24849 elapsed seconds
+conds
+Timing for main: time 2024-08-25_02:40:30 on domain   1:    5.42763 elapsed seconds
+
+rsl.error.0001 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0001 result:
+WRF TILE   1 IS     38 IE     74 JS      1 JE     30
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS     57 IE    112 JS      1 JE     48
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.error.0002 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0002 result:
+WRF TILE   1 IS      1 IE     37 JS     31 JE     61
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS      1 IE     56 JS     49 JE     97
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.error.0003 result:
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0003 result:
+WRF TILE   1 IS     38 IE     74 JS     31 JE     61
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS     57 IE    112 JS     49 JE     97
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+Present wrfout files:
+ 6508 -rw-rw-r-- 1 oom oom  6663034 set  6 12:36 wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-rw-r-- 1 oom oom  7870953 set  6 12:40 wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7956488 set  6 12:45 wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-rw-r-- 1 oom oom  7979627 set  4 14:12 wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-rw-r-- 1 oom oom  7972793 set  4 14:14 wrfout_d01_2024-08-25_04:00:00
+ 7776 -rw-rw-r-- 1 oom oom  7958606 set  4 14:17 wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957747 set  4 14:19 wrfout_d01_2024-08-25_06:00:00
+ 4808 -rw-rw-r-- 1 oom oom 12874330 set  6 12:36 wrfout_d02_2024-08-25_00:00:00
+15420 -rw-rw-r-- 1 oom oom 15790033 set  6 12:41 wrfout_d02_2024-08-25_01:00:00
+15760 -rw-rw-r-- 1 oom oom 16135288 set  6 12:45 wrfout_d02_2024-08-25_02:00:00
+15844 -rw-rw-r-- 1 oom oom 16223178 set  4 14:12 wrfout_d02_2024-08-25_03:00:00
+15860 -rw-rw-r-- 1 oom oom 16238196 set  4 14:14 wrfout_d02_2024-08-25_04:00:00
+15860 -rw-rw-r-- 1 oom oom 16240029 set  4 14:17 wrfout_d02_2024-08-25_05:00:00
+15784 -rw-rw-r-- 1 oom oom 16161613 set  4 14:19 wrfout_d02_2024-08-25_06:00:00
+
+WRF with 4 CPU(s) finished
