@@ -1,0 +1,32 @@
+Beginning WRF with 1 CPU(s) in Single-run mode
+
+WRF with 1 CPU(s) started
+Start: Thu Sep  5 08:22:41 AM UTC 2024
+ starting wrf task            0  of            1
+Finish: Thu Sep  5 08:46:27 AM UTC 2024
+
+rsl.error.0000 result:
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    1.22168 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.22494 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    0.84009 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    5.88676 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.44399 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0000 result:
+Timing for main: time 2024-08-25_05:58:00 on domain   2:    1.22301 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   2:    1.22414 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   1:    5.04466 elapsed seconds
+Timing for main: time 2024-08-25_05:59:00 on domain   2:    1.22477 elapsed seconds
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    1.22168 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.22494 elapsed seconds
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    0.84009 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    5.88676 elapsed seconds
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.44399 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+WRF with 1 CPU(s) finished
