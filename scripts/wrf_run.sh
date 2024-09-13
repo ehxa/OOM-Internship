@@ -6,14 +6,6 @@ re='^[0-9]+$'
 host_cpu=$(nproc)
 date=$(date +"%Y%m%d-%H%M%S")
 
-read -p "How many CPUs? (Max: $host_cpu): " cpu
-
-while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
-    echo "Invalid option, try again."
-    echo ""
-    read -p "How many CPUs? (Max: $host_cpu): " cpu
-done
-
 read -p "How do you want to run it? Single-run (s) or Incrementally (i): " how
 
 while [[ $how != "i" && $how != "s" ]]; do
@@ -32,37 +24,9 @@ done
 
 echo ""
 
-{
-
-[[ $how == "i" ]] && { j=1; echo "Beginning WRF with $cpu cycles in Incrementally mode"; } || { j=$cpu; echo "Beginning WRF with $cpu CPU(s) in Single-run mode"; }
-
-while [[ $j -le $cpu ]]; do
-    echo ""
-    . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real
-    echo "WRF with $j CPU(s) started"
-    [[ $where == "d" ]] && { 
-        systemctl --user start docker-desktop; 
-        sleep 20;
-        docker start ubuntu24.04-wrf-gcc;
-        echo "Start: $(date)"
-        #docker exec -it ubuntu24.04-wrf-gcc mpirun -np $j ./wrf.exe;
-        echo "Finish: $(date)"
-        printOutput
-        docker stop ubuntu24.04-wrf-gcc;
-        systemctl --user stop docker-desktop & disown;
-    }
-    } || [[ $where == "n" ]] && { 
-        mpirun -np $j ./wrf.exe;
-    }
-    #|| [[ $where == "m" ]] && { 
-        #mpirun -np $j ./wrf.exe;
-    #}
-    echo "WRF with $j CPU(s) finished"
-    ((j++))
-done
-printOutput (){
+printOutput () {
     n=0 #count variable to print all rsl.out files
-    while [[ $n -lt $j ]]; do
+    while [[ $n -lt $native_cpu || $n -lt $docker_cpu ]]; do
         echo ""
         echo "rsl.error.000$n result:"
         tail rsl.error.000$n
@@ -75,5 +39,100 @@ printOutput (){
     echo "Present wrfout files:"
     ls -ls wrfout*
     echo ""
+    rm -rf rsl* && rm -rf wrfout*
 }
+
+runDocker () {
+    systemctl --user start docker-desktop; 
+    sleep 20;
+    docker start ubuntu24.04-wrf-gcc;
+    echo "WRF with $docker_cpu CPU(s) started in Docker"
+    echo "Start: $(date)"
+    docker exec -it ubuntu24.04-wrf-gcc bash -c ". $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
+    echo "Finish: $(date)"
+    printOutput
+    docker stop ubuntu24.04-wrf-gcc;
+    systemctl --user stop docker-desktop & disown;
+}
+
+runNative () {
+    echo "WRF with $native_cpu CPU(s) started natively"
+    echo "Start: $(date)"
+    mpirun -np $native_cpu ./wrf.exe;
+    echo "Finish: $(date)"
+    printOutput
+}
+
+{
+if [[ $where == "m" ]]; then
+    [[ $how == "i" ]] && {
+        native_cpu=1; 
+        docker_cpu=$((host_cpu - 1))
+        echo "Beginning WRF with $host_cpu cycles in Incremental and Mixed modes"; 
+        while [[ $native_cpu -le $host_cpu ]]; do
+            runDocker &
+            runNative
+            wait
+            echo "WRF with $native_cpu CPU(s) (Native) and $docker_cpu CPU(s) (Docker) finished"
+            ((native_cpu++))
+            ((docker_cpu--))
+        done
+    } || {
+        read -p "How many CPUs for Docker? (Max: $((host_cpu-1))): " docker_cpu
+        while ! [[ $docker_cpu =~ $re ]] || [[ $docker_cpu -gt $((host_cpu-1)) ]]; do
+            echo "Invalid option, try again."
+            read -p "How many CPUs for Docker? (Max: $((host_cpu-1))): " docker_cpu
+        done
+        native_cpu=$((host_cpu - docker_cpu))
+        echo "Beginning WRF with $native_cpu CPU(s) (Native) and $docker_cpu CPU(s) (Docker) and in Single-run and Mixed modes"
+        runDocker &
+        runNative
+        wait
+        echo "WRF with $native_cpu CPU(s) (Native) and $docker_cpu CPU(s) (Docker) finished"
+    }
+
+elif [[ $where == "n" ]]; then 
+    read -p "How many CPUs? (Max: $host_cpu): " cpu
+    while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
+        echo "Invalid option, try again."
+        echo ""
+        read -p "How many CPUs? (Max: $host_cpu): " cpu
+    done
+    [[ $how == "i" ]] && {
+        native_cpu=1; 
+        echo "Beginning WRF with $cpu cycles in Incremental and Native modes";
+        while [[ $native_cpu -le $cpu ]]; do
+            runNative;
+            echo "WRF with $native_cpu CPU(s) finished"
+            ((native_cpu++))
+        done
+    } || {
+        native_cpu=$cpu; 
+        echo "Beginning WRF with $cpu CPU(s) in Single-run and Native modes"; 
+        runNative;
+        echo "WRF with $cpu CPU(s) finished"
+    }
+
+else 
+    read -p "How many CPUs? (Max: $host_cpu): " cpu
+    while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
+        echo "Invalid option, try again."
+        echo ""
+        read -p "How many CPUs? (Max: $host_cpu): " cpu
+    done
+    [[ $how == "i" ]] && {
+        docker_cpu=1; 
+        echo "Beginning WRF with $cpu cycles in Incremental and Docker modes";
+        while [[ $docker_cpu -le $cpu ]]; do
+            runDocker;
+            echo "WRF with $docker_cpu CPU(s) finished"
+            ((docker_cpu++))
+        done
+    } || {
+        echo "Beginning WRF with $cpu CPU(s) in Single-run and Docker modes"; 
+        docker_cpu=$cpu; 
+        runDocker;
+        echo "WRF with $cpu CPU(s) finished"
+    }
+fi
 } 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
