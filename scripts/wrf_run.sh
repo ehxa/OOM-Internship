@@ -40,21 +40,27 @@ while [[ $j -le $cpu ]]; do
     echo ""
     . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real
     echo "WRF with $j CPU(s) started"
-    echo "Start: $(date)"
     [[ $where == "d" ]] && { 
         systemctl --user start docker-desktop; 
         sleep 20;
         docker start ubuntu24.04-wrf-gcc;
+        echo "Start: $(date)"
         #docker exec -it ubuntu24.04-wrf-gcc mpirun -np $j ./wrf.exe;
+        echo "Finish: $(date)"
+        printOutput
         docker stop ubuntu24.04-wrf-gcc;
-        systemctl --user stop docker-desktop;
+        systemctl --user stop docker-desktop & disown;
+    }
     } || [[ $where == "n" ]] && { 
-        #mpirun -np $j ./wrf.exe;
+        mpirun -np $j ./wrf.exe;
     }
-    || [[ $where == "m" ]] && { 
+    #|| [[ $where == "m" ]] && { 
         #mpirun -np $j ./wrf.exe;
-    }
-    echo "Finish: $(date)"
+    #}
+    echo "WRF with $j CPU(s) finished"
+    ((j++))
+done
+printOutput (){
     n=0 #count variable to print all rsl.out files
     while [[ $n -lt $j ]]; do
         echo ""
@@ -69,7 +75,5 @@ while [[ $j -le $cpu ]]; do
     echo "Present wrfout files:"
     ls -ls wrfout*
     echo ""
-    echo "WRF with $j CPU(s) finished"
-    ((j++))
-done
+}
 } 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
