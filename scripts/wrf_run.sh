@@ -58,7 +58,7 @@ runDocker () {
 runNative () {
     echo "WRF with $native_cpu CPU(s) started natively"
     echo "Start: $(date)"
-    mpirun -np $native_cpu ./wrf.exe;
+    . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $native_cpu ./wrf.exe;
     echo "Finish: $(date)"
     printOutput
 }
