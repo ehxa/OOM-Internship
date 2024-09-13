@@ -47,9 +47,9 @@ runDocker () {
     sleep 20;
     docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
-    echo "Start: $(date)"
+    echo "Start (Docker): $(date)"
     docker exec -it ubuntu24.04-wrf-gcc bash -c ". $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
-    echo "Finish: $(date)"
+    echo "Finish (Docker): $(date)"
     printOutput
     docker stop ubuntu24.04-wrf-gcc;
     systemctl --user stop docker-desktop & disown;
@@ -57,9 +57,9 @@ runDocker () {
 
 runNative () {
     echo "WRF with $native_cpu CPU(s) started natively"
-    echo "Start: $(date)"
+    echo "Start (Native): $(date)"
     . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $native_cpu ./wrf.exe;
-    echo "Finish: $(date)"
+    echo "Finish (Native): $(date)"
     printOutput
 }
 
