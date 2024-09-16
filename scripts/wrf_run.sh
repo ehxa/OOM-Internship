@@ -78,7 +78,7 @@ if [[ $where == "m" ]]; then
     [[ $how == "i" ]] && {
         native_cpu=1; 
         docker_cpu=$((host_cpu - 1))
-        echo "Beginning WRF with $host_cpu cycles in Incremental and Mixed modes"; 
+        echo "Beginning WRF with $docker_cpu cycles in Incremental and Mixed modes"; 
         startDocker
         while [[ $native_cpu -lt $host_cpu ]]; do
             runDocker &
