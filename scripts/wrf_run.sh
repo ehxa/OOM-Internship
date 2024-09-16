@@ -51,7 +51,7 @@ printDocker () {
         docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.000$n"
         echo ""
         echo "rsl.out.000$n result (Docker):"
-        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.000$n"
+        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.out.000$n"
         ((n++))
     done
     echo ""
@@ -67,7 +67,6 @@ runDocker () {
     echo "Start (Docker): $(date)"
     docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
     echo "Finish (Docker): $(date)"
-    docker exec
     printDocker
     docker stop ubuntu24.04-wrf-gcc;
 }
