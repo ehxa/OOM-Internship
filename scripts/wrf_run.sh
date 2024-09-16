@@ -47,15 +47,21 @@ runDocker () {
     docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
     echo "Start (Docker): $(date)"
-    docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
+    #docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
     echo "Finish (Docker): $(date)"
     printOutput
     docker stop ubuntu24.04-wrf-gcc;
 }
 
 startDocker () {
-    systemctl --user start docker-desktop; 
-    sleep 20;
+    if [[ $j -eq 1 ]]; then
+        systemctl --user start docker-desktop; 
+        sleep 20;
+    fi
+}
+
+stopDocker () {
+    systemctl --user stop docker-desktop; 
 }
 
 
@@ -73,6 +79,7 @@ if [[ $where == "m" ]]; then
         native_cpu=1; 
         docker_cpu=$((host_cpu - 1))
         echo "Beginning WRF with $host_cpu cycles in Incremental and Mixed modes"; 
+        startDocker
         while [[ $native_cpu -le $host_cpu ]]; do
             runDocker &
             runNative
@@ -81,6 +88,7 @@ if [[ $where == "m" ]]; then
             ((native_cpu++))
             ((docker_cpu--))
         done
+        stopDocker
     } || {
         read -p "How many CPUs for Docker? (Max: $((host_cpu-1))): " docker_cpu
         while ! [[ $docker_cpu =~ $re ]] || [[ $docker_cpu -gt $((host_cpu-1)) ]]; do
@@ -89,10 +97,12 @@ if [[ $where == "m" ]]; then
         done
         native_cpu=$((host_cpu - docker_cpu))
         echo "Beginning WRF with $native_cpu CPU(s) (Native) and $docker_cpu CPU(s) (Docker) and in Single-run and Mixed modes"
+        startDocker
         runDocker &
         runNative
         wait
         echo "WRF with $native_cpu CPU(s) (Native) and $docker_cpu CPU(s) (Docker) finished"
+        stopDocker
     }
     ((j++))
 
@@ -128,16 +138,20 @@ else
     [[ $how == "i" ]] && {
         docker_cpu=1; 
         echo "Beginning WRF with $cpu cycles in Incremental and Docker modes";
+        startDocker
         while [[ $docker_cpu -le $cpu ]]; do
             runDocker;
             echo "WRF with $docker_cpu CPU(s) finished"
             ((docker_cpu++))
         done
+        stopDocker
     } || {
         echo "Beginning WRF with $cpu CPU(s) in Single-run and Docker modes"; 
         docker_cpu=$cpu; 
+        startDocker
         runDocker;
         echo "WRF with $cpu CPU(s) finished"
+        stopDocker
     }
     ((j++))
 fi
