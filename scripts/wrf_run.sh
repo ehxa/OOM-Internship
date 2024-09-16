@@ -80,7 +80,7 @@ if [[ $where == "m" ]]; then
         docker_cpu=$((host_cpu - 1))
         echo "Beginning WRF with $host_cpu cycles in Incremental and Mixed modes"; 
         startDocker
-        while [[ $native_cpu -le $host_cpu ]]; do
+        while [[ $native_cpu -lt $host_cpu ]]; do
             runDocker &
             runNative
             wait
