@@ -25,22 +25,40 @@ done
 
 echo ""
 
-printOutput () {
+printNative () {
     n=0 #count variable to print all rsl.out files
-    while [[ $n -lt $native_cpu || $n -lt $docker_cpu ]]; do
+    while [[ $n -lt $native_cpu ]]; do
         echo ""
-        echo "rsl.error.000$n result:"
+        echo "rsl.error.000$n result (Native):"
         tail rsl.error.000$n
         echo ""
-        echo "rsl.out.000$n result:"
+        echo "rsl.out.000$n result (Native):"
         tail rsl.out.000$n
         ((n++))
     done
     echo ""
-    echo "Present wrfout files:"
+    echo "Present wrfout files (Native):"
     ls -ls wrfout*
     echo ""
     rm -rf rsl* && rm -rf wrfout*
+}
+
+printDocker () {
+    n=0 #count variable to print all rsl.out files
+    while [[ $n -lt $docker_cpu ]]; do
+        echo ""
+        echo "rsl.error.000$n result (Docker):"
+        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.000$n"
+        echo ""
+        echo "rsl.out.000$n result (Docker):"
+        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.000$n"
+        ((n++))
+    done
+    echo ""
+    echo "Present wrfout files (Docker):"
+    docker exec -i ubuntu24.04-wrf-gcc bash -c "ls -ls /home/swe/wrf/WRF/WRF/test/em_real/wrfout*"
+    echo ""
+    docker exec -i ubuntu24.04-wrf-gcc bash -c "rm -rf /home/swe/wrf/WRF/WRF/test/em_real/rsl* /home/swe/wrf/WRF/WRF/test/em_real/wrfout*"
 }
 
 runDocker () {
@@ -49,7 +67,8 @@ runDocker () {
     echo "Start (Docker): $(date)"
     docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
     echo "Finish (Docker): $(date)"
-    printOutput
+    docker exec
+    printDocker
     docker stop ubuntu24.04-wrf-gcc;
 }
 
@@ -69,7 +88,7 @@ runNative () {
     echo "Start (Native): $(date)"
     . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $native_cpu ./wrf.exe;
     echo "Finish (Native): $(date)"
-    printOutput
+    printNative
 }
 
 {
