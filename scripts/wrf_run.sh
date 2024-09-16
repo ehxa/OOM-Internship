@@ -43,8 +43,10 @@ printOutput () {
 }
 
 runDocker () {
-    systemctl --user start docker-desktop; 
-    sleep 20;
+    if [[ $native_cpu -eq 1 || $j -eq 1 ]]; then
+        systemctl --user start docker-desktop; 
+        sleep 20;
+    fi
     docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
     echo "Start (Docker): $(date)"
@@ -52,8 +54,8 @@ runDocker () {
     echo "Finish (Docker): $(date)"
     printOutput
     docker stop ubuntu24.04-wrf-gcc;
-    systemctl --user stop docker-desktop & disown;
 }
+
 
 runNative () {
     echo "WRF with $native_cpu CPU(s) started natively"
@@ -115,6 +117,7 @@ elif [[ $where == "n" ]]; then
 
 else 
     read -p "How many CPUs? (Max: $host_cpu): " cpu
+    j=1
     while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
         echo "Invalid option, try again."
         echo ""
@@ -134,5 +137,6 @@ else
         runDocker;
         echo "WRF with $cpu CPU(s) finished"
     }
+    ((j++));
 fi
 } 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
