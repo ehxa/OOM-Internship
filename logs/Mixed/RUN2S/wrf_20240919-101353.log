@@ -1,0 +1,144 @@
+How many CPUs for Docker? (Max: 3): Beginning WRF with 3 CPU(s) (Native) and 1 CPU(s) (Docker) and in Single-run and Mixed modes
+WRF with 3 CPU(s) started natively
+Start (Native): qui 19 set 2024 10:14:31 WEST
+ starting wrf task            0  of            3
+ starting wrf task            1  of            3
+ starting wrf task            2  of            3
+ubuntu24.04-wrf-gcc
+WRF with 1 CPU(s) started in Docker
+Start (Docker): qui 19 set 2024 10:14:32 WEST
+ starting wrf task            0  of            1
+Finish (Native): qui 19 set 2024 10:31:49 WEST
+
+rsl.error.0000 result (Native):
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    0.90579 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.06887 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    1.40857 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    5.37431 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.71689 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0000 result (Native):
+Timing for main: time 2024-08-25_05:58:00 on domain   2:    0.85458 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   2:    0.89890 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   1:    3.64191 elapsed seconds
+Timing for main: time 2024-08-25_05:59:00 on domain   2:    0.85878 elapsed seconds
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    0.90579 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.06887 elapsed seconds
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    1.40857 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    5.37431 elapsed seconds
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.71689 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.error.0001 result (Native):
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0001 result (Native):
+WRF TILE   1 IS      1 IE     74 JS     21 JE     40
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS      1 IE    112 JS     33 JE     64
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.error.0002 result (Native):
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0002 result (Native):
+WRF TILE   1 IS      1 IE     74 JS     41 JE     61
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_00:00:00  ----------------------------------------
+d01 2024-08-25_00:00:00  W-DAMPING  BEGINS AT W-COURANT NUMBER =    1.00000000
+d01 2024-08-25_00:00:00  ----------------------------------------
+ Tile Strategy is not specified. Assuming 1D-Y
+WRF TILE   1 IS      1 IE    112 JS     65 JE     97
+WRF NUMBER OF TILES =   1
+d01 2024-08-25_03:00:00  Input data is acceptable to use:
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+Present wrfout files (Native):
+ 6508 -rw-rw-r-- 1 oom oom  6663034 set 19 10:14 wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-rw-r-- 1 oom oom  7870953 set 19 10:17 wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7956488 set 19 10:20 wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-rw-r-- 1 oom oom  7979877 set 19 10:23 wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-rw-r-- 1 oom oom  7972246 set 19 10:25 wrfout_d01_2024-08-25_04:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957935 set 19 10:28 wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-rw-r-- 1 oom oom  7957629 set 19 10:31 wrfout_d01_2024-08-25_06:00:00
+12576 -rw-rw-r-- 1 oom oom 12874330 set 19 10:14 wrfout_d02_2024-08-25_00:00:00
+15420 -rw-rw-r-- 1 oom oom 15790033 set 19 10:17 wrfout_d02_2024-08-25_01:00:00
+15760 -rw-rw-r-- 1 oom oom 16135288 set 19 10:20 wrfout_d02_2024-08-25_02:00:00
+15844 -rw-rw-r-- 1 oom oom 16221694 set 19 10:23 wrfout_d02_2024-08-25_03:00:00
+15860 -rw-rw-r-- 1 oom oom 16239750 set 19 10:25 wrfout_d02_2024-08-25_04:00:00
+15856 -rw-rw-r-- 1 oom oom 16236275 set 19 10:28 wrfout_d02_2024-08-25_05:00:00
+15780 -rw-rw-r-- 1 oom oom 16156623 set 19 10:31 wrfout_d02_2024-08-25_06:00:00
+
+Finish (Docker): qui 19 set 2024 10:48:29 WEST
+
+rsl.error.0000 result (Docker):
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    1.35372 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.29329 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            2  grid%oid            2
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    0.88195 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    6.34773 elapsed seconds
+ mediation_integrate.G        1242 DATASET=HISTORY
+ mediation_integrate.G        1243  grid%id            1  grid%oid            2
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.48691 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+rsl.out.0000 result (Docker):
+Timing for main: time 2024-08-25_05:58:00 on domain   2:    1.34227 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   2:    1.29810 elapsed seconds
+Timing for main: time 2024-08-25_05:58:30 on domain   1:    5.37217 elapsed seconds
+Timing for main: time 2024-08-25_05:59:00 on domain   2:    1.35562 elapsed seconds
+Timing for main: time 2024-08-25_05:59:30 on domain   2:    1.35372 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   2:    1.29329 elapsed seconds
+Timing for Writing wrfout_d02_2024-08-25_06:00:00 for domain        2:    0.88195 elapsed seconds
+Timing for main: time 2024-08-25_06:00:00 on domain   1:    6.34773 elapsed seconds
+Timing for Writing wrfout_d01_2024-08-25_06:00:00 for domain        1:    0.48691 elapsed seconds
+d01 2024-08-25_06:00:00 wrf: SUCCESS COMPLETE WRF
+
+Present wrfout files (Docker):
+ 6508 -rw-r--r-- 1 swe swe  6663034 Sep 19 09:14 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_00:00:00
+ 7688 -rw-r--r-- 1 swe swe  7870953 Sep 19 09:23 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_01:00:00
+ 7772 -rw-r--r-- 1 swe swe  7956488 Sep 19 09:31 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_02:00:00
+ 7796 -rw-r--r-- 1 swe swe  7979877 Sep 19 09:36 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_03:00:00
+ 7788 -rw-r--r-- 1 swe swe  7972246 Sep 19 09:40 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_04:00:00
+ 7772 -rw-r--r-- 1 swe swe  7957935 Sep 19 09:44 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_05:00:00
+ 7772 -rw-r--r-- 1 swe swe  7957629 Sep 19 09:48 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d01_2024-08-25_06:00:00
+12576 -rw-r--r-- 1 swe swe 12874330 Sep 19 09:15 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_00:00:00
+15420 -rw-r--r-- 1 swe swe 15790033 Sep 19 09:23 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_01:00:00
+15760 -rw-r--r-- 1 swe swe 16135288 Sep 19 09:31 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_02:00:00
+15844 -rw-r--r-- 1 swe swe 16221694 Sep 19 09:36 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_03:00:00
+15860 -rw-r--r-- 1 swe swe 16239750 Sep 19 09:40 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_04:00:00
+15856 -rw-r--r-- 1 swe swe 16236275 Sep 19 09:44 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_05:00:00
+15780 -rw-r--r-- 1 swe swe 16156623 Sep 19 09:48 /home/swe/wrf/WRF/WRF/test/em_real/wrfout_d02_2024-08-25_06:00:00
+
+ubuntu24.04-wrf-gcc
+WRF with 3 CPU(s) (Native) and 1 CPU(s) (Docker) finished
