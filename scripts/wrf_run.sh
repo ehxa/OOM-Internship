@@ -7,6 +7,20 @@ host_cpu=$(nproc)
 date=$(date +"%Y%m%d-%H%M%S")
 j=1
 
+read -p "Which location do you want to run it? em_real (e) or run (r): " which
+
+while [[ $how != "e" && $how != "r" ]]; do
+    echo "Invalid option, try again."
+    echo ""
+    read -p "Which location do you want to run it? em_real (e) or run (r): " which
+done
+
+if [[ $which == "e" ]]; then
+    location="test/em_real"
+else
+    location="run"
+fi
+
 read -p "How do you want to run it? Single-run (s) or Incrementally (i): " how
 
 while [[ $how != "i" && $how != "s" ]]; do
@@ -48,24 +62,24 @@ printDocker () {
     while [[ $n -lt $docker_cpu ]]; do
         echo ""
         echo "rsl.error.000$n result (Docker):"
-        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.000$n"
+        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.error.000$n"
         echo ""
         echo "rsl.out.000$n result (Docker):"
-        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/test/em_real/rsl.out.000$n"
+        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.out.000$n"
         ((n++))
     done
     echo ""
     echo "Present wrfout files (Docker):"
-    docker exec -i ubuntu24.04-wrf-gcc bash -c "ls -ls /home/swe/wrf/WRF/WRF/test/em_real/wrfout*"
+    docker exec -i ubuntu24.04-wrf-gcc bash -c "ls -ls /home/swe/wrf/WRF/WRF/$location/wrfout*"
     echo ""
-    docker exec -i ubuntu24.04-wrf-gcc bash -c "rm -rf /home/swe/wrf/WRF/WRF/test/em_real/rsl* /home/swe/wrf/WRF/WRF/test/em_real/wrfout*"
+    docker exec -i ubuntu24.04-wrf-gcc bash -c "rm -rf /home/swe/wrf/WRF/WRF/$location/rsl* /home/swe/wrf/WRF/WRF/$location/wrfout*"
 }
 
 runDocker () {
     docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
     echo "Start (Docker): $(date)"
-    docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/test/em_real && mpirun -np $docker_cpu ./wrf.exe;"
+    docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && mpirun -np $docker_cpu ./wrf.exe;"
     echo "Finish (Docker): $(date)"
     printDocker
     docker stop ubuntu24.04-wrf-gcc;
@@ -85,7 +99,7 @@ stopDocker () {
 runNative () {
     echo "WRF with $native_cpu CPU(s) started natively"
     echo "Start (Native): $(date)"
-    . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/test/em_real && mpirun -np $native_cpu ./wrf.exe;
+    . $HOME/wrf/gccvars.sh && cd $HOME/wrf/WRF/WRF/$location && mpirun -np $native_cpu ./wrf.exe;
     echo "Finish (Native): $(date)"
     printNative
 }
