@@ -9,7 +9,7 @@ j=1
 
 read -p "Which location do you want to run it? em_real (e) or run (r): " which
 
-while [[ $how != "e" && $how != "r" ]]; do
+while [[ $which != "e" && $which != "r" ]]; do
     echo "Invalid option, try again."
     echo ""
     read -p "Which location do you want to run it? em_real (e) or run (r): " which
