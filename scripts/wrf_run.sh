@@ -79,7 +79,11 @@ runDocker () {
     docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
     echo "Start (Docker): $(date)"
-    docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && mpirun -np $docker_cpu ./wrf.exe;"
+    if [[ $which == "r" ]]; then
+        docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && timeout 3600s mpirun -np $docker_cpu ./wrf.exe;"
+    else
+        docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && mpirun -np $docker_cpu ./wrf.exe;"
+    fi
     echo "Finish (Docker): $(date)"
     printDocker
     docker stop ubuntu24.04-wrf-gcc;
