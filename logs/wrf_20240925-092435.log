@@ -1,0 +1,5 @@
+How many CPUs? (Max: 4): Beginning WRF with 1 CPU(s) in Single-run and Docker modes
+ubuntu24.04-wrf-gcc
+WRF with 1 CPU(s) started in Docker
+Start (Docker): qua 25 set 2024 09:25:05 WEST
+ starting wrf task            0  of            1
