@@ -1,0 +1,35 @@
+FROM ehxa/oom:opensuse-tumbleweed-20241007
+LABEL version="0.3"
+
+#
+# Set up base OS environment
+#
+
+RUN zypper -n update
+RUN zypper -n install glibc-locale sudo file libpng16-devel vim python313 \
+    hostname m4 make perl bash tcsh time wget which git cmake pkgconf libxml2-devel libcurl-devel \
+    openssh net-tools fontconfig libXext6 libXrender1 ImageMagick
+RUN zypper addrepo https://download.opensuse.org/repositories/devel:gcc/openSUSE_Factory/devel:gcc.repo
+RUN zypper refresh
+RUN zypper install gcc9 gcc9-c++ gcc9-fortran
+    
+
+#
+# Create user
+#
+RUN useradd -m swe
+RUN echo "swe ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/swe
+USER swe
+WORKDIR /home/swe
+
+#
+# setup environment
+#
+ENV HOME="/home/swe"
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US:en"
+ENV LC_ALL="en_US.UTF-8"
+RUN echo "alias cp='cp -iv'" >> ~/.bashrc && \
+    echo "alias mv='mv -iv'" >> ~/.bashrc && \
+    echo "alias mkdir='mkdir -pv'" >> ~/.bashrc && \
+    echo "alias ll='ls -FGlAhp'" >> ~/.bashrc
