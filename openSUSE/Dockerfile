@@ -1,22 +1,21 @@
 FROM ehxa/oom:opensuse-tumbleweed-20241007
-LABEL version="0.3"
+LABEL version="0.2"
 
 #
 # Set up base OS environment
 #
 
-RUN zypper -n update
-RUN zypper -n install glibc-locale sudo file libpng16-devel vim python313 \
-    hostname m4 make perl bash tcsh time wget which git cmake pkgconf libxml2-devel libcurl-devel \
-    openssh net-tools fontconfig libXext6 libXrender1 ImageMagick
-RUN zypper addrepo https://download.opensuse.org/repositories/devel:gcc/openSUSE_Factory/devel:gcc.repo
-RUN zypper refresh
-RUN zypper install gcc9 gcc9-c++ gcc9-fortran
-    
+RUN zypper -n --gpg-auto-import-keys addrepo https://download.opensuse.org/repositories/devel:gcc/openSUSE_Factory/devel:gcc.repo && \
+    zypper -n --gpg-auto-import-keys refresh && \
+    zypper -n update && \
+    zypper -n install glibc-locale sudo file libpng16-devel vim python313 \
+    hostname m4 make perl time wget which git cmake pkgconf libxml2-devel libcurl-devel \
+    openssh net-tools fontconfig libXext6 libXrender1 ImageMagick gcc9 gcc9-c++ gcc9-fortran && \
+    zypper clean --all
 
 #
 # Create user
-#
+#g
 RUN useradd -m swe
 RUN echo "swe ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/swe
 USER swe
