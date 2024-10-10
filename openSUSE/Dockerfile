@@ -1,5 +1,5 @@
-FROM ehxa/oom:opensuse-tumbleweed-20241007
-LABEL version="0.2"
+FROM ehxa/oom:opensuse-tumbleweed-20241007-base
+LABEL version="0.3"
 
 #
 # Set up base OS environment
@@ -11,7 +11,10 @@ RUN zypper -n --gpg-auto-import-keys addrepo https://download.opensuse.org/repos
     zypper -n install glibc-locale sudo file libpng16-devel vim python313 \
     hostname m4 make perl time wget which git cmake pkgconf libxml2-devel libcurl-devel \
     openssh net-tools fontconfig libXext6 libXrender1 ImageMagick gcc9 gcc9-c++ gcc9-fortran && \
-    zypper clean --all
+    zypper clean --all && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 100 && \
+    update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-9 100
 
 #
 # Create user
