@@ -1,0 +1,150 @@
+#!/bin/bash
+#WRF Installation Guide
+#Author: Diogo Gouveia (ehxa)
+#Version: 20240509 (WIP)
+#For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
+
+#Create Directories
+mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA
+
+#gcc 9.5 and g++
+sudo apt-get update
+sudo apt-get -y install gcc-9 g++-9 gfortran-9
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
+sudo update-alternatives --config gcc #select /usr/bin/gcc-9 manual mode
+sudo update-alternatives --config g++ #select /usr/bin/g++-9 manual mode
+sudo ln -s /usr/bin/gfortran-9 /usr/bin/gfortran
+gcc --version
+g++ --version
+gfortran --version
+
+
+#Download Libraries
+cd $HOME/wrf/libs
+wget -c https://www2.mmm.ucar.edu/people/duda/files/mpas/sources/zlib-1.2.11.tar.gz && wget -c https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.gz && wget -c https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.2.tar.gz && wget -c https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.1.tar.gz && wget -c http://www.mpich.org/static/downloads/3.3.1/mpich-3.3.1.tar.gz && wget -c https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz && wget -c https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz 
+
+#Extract Libraries
+tar -xvzf zlib-1.2.11.tar.gz && tar -xvzf hdf5-1.10.5.tar.gz && tar -xvzf v4.9.2.tar.gz && tar -xvzf v4.6.1.tar.gz && tar -xvzf mpich-3.3.1.tar.gz && tar -xvzf libpng-1.6.37.tar.gz && tar -xvzf jasper-1.900.1.tar.gz
+
+#Download WRF & WPS
+cd $HOME/wrf/Downloads
+wget -c https://github.com/wrf-model/WRF/releases/download/v4.4.2/v4.4.2.tar.gz && wget -c https://github.com/wrf-model/WPS/archive/refs/tags/v4.2.tar.gz
+
+#Extract WRF & WPS
+tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/WRF && mv $HOME/wrf/WRF/WPS-4.2 $HOME/wrf/WRF/WPS
+
+#Set environment variables
+#source $HOME/wrf/icxvars.sh
+source $HOME/wrf/gccvars.sh #RHEL based
+. $HOME/wrf/gccvars.sh #Debian based
+
+#Install zlib
+cd $HOME/wrf/libs/zlib-1.2.11 && ./configure --prefix=$DIR
+make
+make install
+
+#Install hdf5
+cd $HOME/wrf/libs/hdf5-1.10.5 && ./configure --prefix=$DIR --with-zlib=$DIR --enable-fortran --enable-shared
+make
+make install
+
+#Install netcdf-c
+cd $HOME/wrf/libs/netcdf-c-4.9.2 && ./configure --prefix=$DIR --enable-netcdf-4
+make 
+make install
+
+#Install netcdf-fortran
+cd $HOME/wrf/libs/netcdf-fortran-4.6.1 && export HDF5_PLUGIN_PATH=$DIR && export LIBS="-lnetcdf -lhdf5_hl -lhdf5 -lz" && ./configure --prefix=$DIR
+make
+make install
+
+#Install mpich
+cd $HOME/wrf/libs/mpich-3.3.1 && ./configure --prefix=$DIR 
+make -j 4
+make install
+
+#Install libpng
+cd $HOME/wrf/libs/libpng-1.6.37 && ./configure --prefix=$DIR
+make
+make install
+
+#Install jasper
+cd $HOME/wrf/libs/jasper-1.900.1
+autoreconf -i && ./configure --prefix=$DIR
+make
+make install
+
+#Install WRF
+cd $HOME/wrf/WRF/WRF && export LDFLAGS="-L$HOME/wrf/libs/lib -lhdf5 -lhdf5_hl -lhdf5_fortran -lhdf5hl_fortran -lnetcdf -lnetcdff -lmpi -lmpifort -lmpich -lmpicxx -ljasper -lpng16 -lz"
+#IMPORTANT (Ubuntu and Ubuntu based only): In Ubuntu, a error is raised due to line 919 of configure.
+vim configure #change the operator from == to = in line 919. Other OS can skip this step.
+./clean -a && ./configure  #options 78 and 1 with icx or 34 and 1 with gcc
+
+cp share/landread.c share/landread.backup && cp share/landread.c.dist share/landread.c
+./compile em_real
+
+#Install WPS
+export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./configure #option 3
+./compile
+
+#Prepare WPS
+cd $HOME/wrf/Downloads && wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz 
+tar -xvzf geog_high_res_mandatory.tar.gz -C $HOME/wrf/WRF
+cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
+cd $HOME/wrf/DATA && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f000 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f003 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f006 
+cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
+ls -ls geo_em* #confirm that files were created successfully
+./link_grib.csh $HOME/wrf/DATA/gfs*
+ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
+
+#Install wgrib2
+cd $HOME/wrf && wget https://github.com/NOAA-EMC/wgrib2/archive/refs/tags/v3.3.0.tar.gz && tar -xzvf v3.3.0.tar.gz && cd wgrib2-3.3.0 && mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=$DIR
+make
+make install
+export PATH=$HOME/wrf/wgrib2-3.3.0/build/install/bin:$PATH
+wgrib2 --version #verify that it is working
+
+#Verify GFS files
+cd $HOME/wrf/DATA
+wgrib2 gfs.t00z.pgrb2.0p25.f000
+wgrib2 gfs.t00z.pgrb2.0p25.f003
+wgrib2 gfs.t00z.pgrb2.0p25.f006 
+
+#Change interval in WPS
+cd $HOME/wrf/WRF/WPS
+vim namelist.wps #modify start_date, end_date, ann interval_seconds (10800)
+
+#Run ungrib
+./ungrib.exe
+ls -ls FILE* #confirm that these files were created
+
+#Run metgrid
+./metgrid.exe |& tee log.metgrid
+ls -ls met_em* #confirm that these files were created
+
+
+#Prepare WRF
+cd $HOME/wrf/WRF/WRF/test/em_real && ln -sf $HOME/wrf/WRF/WPS/met_em* .
+ncdump -h met_em.d0x.2024-08-25_00:00:00.nc #do this to check all variables data and take notes #check all met_em* files
+vim namelist.input
+#modify run_hours, start_year, start_month, start_day, start_hour, end_year, end_month, end_day, end_hour
+#e_sn(SOUTH-NORTH_GRID_DIMENSION), e_we(WEST-EAST_GRID_DIMENSION), dx, dy, j_parent_start
+#in parentheses theres the corresponding variable name inside the met_em* files
+
+
+#Run WRF test
+mpirun -np 1 ./real.exe
+#if any other parameters need to be changed, use cat rsl.error.0000 to check which ones
+tail rsl.error.0000 #output shall print "SUCCESSFUL"
+ls -ls wrf* #check if files wrfbdy_d01, and wrfinput_d0* were created
+
+#Run WRF
+mpirun -np 1 ./wrf.exe #use -np n according to the number of CPU cores
+tail rsl.error.0000 #output shall print "SUCCESSFUL"
+ls -ls wrf* #check if files wrfbdy_d01, wrfout_d0* were created
+
+#Run WRF from script
+chmod u+x $HOME/wrf/OOM-Internship/scripts/wrf_run.sh #Add run permissions to the user
+$HOME/wrf/OOM-Internship/scripts/wrf_run.sh
