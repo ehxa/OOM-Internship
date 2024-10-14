@@ -23,8 +23,7 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 cd $HOME/wrf
-wget "https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/gccvars.sh"
-mv "https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/gccvars.sh" gccvars.sh
+wget 'https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/gccvars.sh'
 source $HOME/wrf/gccvars.sh 
 
 #Install zlib
@@ -85,8 +84,7 @@ ls -ls geo_em*
 ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
 
 #Add WRF Running script
-wget "https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh"
-mv "https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh" wrf_run.sh
+wget 'https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh'
 chmod u+x $HOME/wrf/OOM-Internship/scripts/wrf_run.sh #Add run permissions to the user
 
 cd $HOME
