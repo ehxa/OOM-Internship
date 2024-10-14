@@ -23,7 +23,7 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 cd $HOME/wrf
-wget 'https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/gccvars.sh'
+wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/gccvars.sh
 source $HOME/wrf/gccvars.sh 
 
 #Install zlib
@@ -74,8 +74,6 @@ export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./conf
 ./compile
 
 #Prepare WPS
-cd $HOME/wrf/Downloads && wget https://www2.mmm.ucar.edu/wrf/src/wps_files/geog_high_res_mandatory.tar.gz 
-tar -xvzf geog_high_res_mandatory.tar.gz -C $HOME/wrf/WRF
 cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
 cd $HOME/wrf/DATA && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f000 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f003 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f006 
 cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
@@ -84,7 +82,7 @@ ls -ls geo_em*
 ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
 
 #Add WRF Running script
-wget 'https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh'
+wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh
 chmod u+x $HOME/wrf/OOM-Internship/scripts/wrf_run.sh #Add run permissions to the user
 
 cd $HOME
