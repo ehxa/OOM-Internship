@@ -1,5 +1,5 @@
 FROM ehxa/oom:opensuse-tumbleweed-20241007-base
-LABEL version="0.7"
+LABEL version="0.8"
 
 #
 # Set up base OS environment
@@ -8,7 +8,7 @@ LABEL version="0.7"
 RUN zypper -n --gpg-auto-import-keys addrepo https://download.opensuse.org/repositories/devel:gcc/openSUSE_Factory/devel:gcc.repo && \
     zypper -n --gpg-auto-import-keys refresh && \
     zypper -n update && \
-    zypper -n install glibc-locale sudo file libpng16-devel vim python313 gawk autoconf automake libtool\
+    zypper -n install glibc-locale sudo file libpng16-devel vim python313 gawk autoconf automake libtool tcsh\
     hostname m4 make perl time wget which git cmake pkgconf libxml2-devel libcurl-devel \
     openssh net-tools fontconfig libXext6 libXrender1 ImageMagick gcc9 gcc9-c++ gcc9-fortran && \
     zypper clean --all && \
