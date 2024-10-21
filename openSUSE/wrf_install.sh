@@ -75,8 +75,11 @@ export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./conf
 
 #Prepare WPS
 cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
-cd $HOME/wrf/DATA && wget https://testuma-my.sharepoint.com/personal/2042918_student_uma_pt/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F2042918%5Fstudent%5Fuma%5Fpt%2FDocuments%2FMestrado%2FPartilhado%2F2Ano%2FEst%C3%A1gio%2FDados%2Fusa%2Ezip
-https://testuma-my.sharepoint.com/:u:/g/personal/2042918_student_uma_pt/ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1
+cd $HOME/wrf/DATA && wget "https://testuma-my.sharepoint.com/:u:/g/personal/2042918_student_uma_pt/ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1"
+mv 'ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1 usa.zip'
+unzip usa.zip
+rm -rf usa.zip
+
 cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
 ls -ls geo_em*
 ./link_grib.csh $HOME/wrf/DATA/gfs*
