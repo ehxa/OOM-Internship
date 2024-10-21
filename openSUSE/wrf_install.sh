@@ -75,7 +75,7 @@ export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./conf
 
 #Prepare WPS
 cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
-cd $HOME/wrf/DATA && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f000 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f003 && wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240825/00/atmos/gfs.t00z.pgrb2.0p25.f006 
+cd $HOME/wrf/DATA && wget https://testuma-my.sharepoint.com/personal/2042918_student_uma_pt/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F2042918%5Fstudent%5Fuma%5Fpt%2FDocuments%2FMestrado%2FPartilhado%2F2Ano%2FEst%C3%A1gio%2FDados%2Fusa%2Ezip
 cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
 ls -ls geo_em*
 ./link_grib.csh $HOME/wrf/DATA/gfs*
