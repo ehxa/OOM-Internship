@@ -6,6 +6,7 @@ re='^[0-9]+$'
 host_cpu=$(nproc)
 date=$(date +"%Y%m%d-%H%M%S")
 j=1
+ulimit -s unlimited
 
 read -p "Which location do you want to run it? em_real (e) or run (r): " which
 
