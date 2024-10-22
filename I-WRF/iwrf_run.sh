@@ -6,6 +6,7 @@ re='^[0-9]+$'
 host_cpu=$(nproc)
 date=$(date +"%Y%m%d-%H%M%S")
 j=1
+. /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location
 
 read -p "Which location do you want to run it? em_real (e) or run (r): " which
 
@@ -53,9 +54,9 @@ runNative () {
     echo "WRF with $native_cpu CPU(s) started"
     echo "Start: $(date)"
     if [[ $which == "r" ]]; then
-        . /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location &&  timeout 3600s mpirun -np $native_cpu ./wrf.exe;
+        timeout 3600s mpirun -np $native_cpu ./wrf.exe;
     else
-        . /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location && mpirun -np $native_cpu ./wrf.exe;
+        mpirun -np $native_cpu ./wrf.exe;
     fi
     echo "Finish: $(date)"
     printNative
