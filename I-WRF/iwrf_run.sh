@@ -29,8 +29,6 @@ while [[ $how != "i" && $how != "s" ]]; do
     read -p "How do you want to run it? Single-run (s) or Incrementally (i): " how
 done
 
-read -p "Where do you want to run it? Native (n), Docker (d) or Mixed (m): " where
-
 echo ""
 
 printNative () {
