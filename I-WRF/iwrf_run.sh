@@ -70,7 +70,7 @@ runNative () {
     done
     [[ $how == "i" ]] && {
         native_cpu=1; 
-        echo "Beginning WRF with $cpu cycles in Incremental modes";
+        echo "Beginning WRF with $cpu cycles in Incremental mode";
         while [[ $native_cpu -le $cpu ]]; do
             runNative;
             echo "WRF with $native_cpu CPU(s) finished"
@@ -78,7 +78,7 @@ runNative () {
         done
     } || {
         native_cpu=$cpu; 
-        echo "Beginning WRF with $cpu CPU(s) in Single-run and Native modes"; 
+        echo "Beginning WRF with $cpu CPU(s) in Single-run mode"; 
         runNative;
         echo "WRF with $cpu CPU(s) finished"
     }
