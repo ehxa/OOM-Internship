@@ -35,34 +35,33 @@ printNative () {
     n=0 #count variable to print all rsl.out files
     while [[ $n -lt $native_cpu ]]; do
         echo ""
-        echo "rsl.error.000$n result (Native):"
+        echo "rsl.error.000$n result:"
         tail rsl.error.000$n
         echo ""
-        echo "rsl.out.000$n result (Native):"
+        echo "rsl.out.000$n result:"
         tail rsl.out.000$n
         ((n++))
     done
     echo ""
-    echo "Present wrfout files (Native):"
+    echo "Present wrfout files:"
     ls -ls wrfout*
     echo ""
     rm -rf rsl* && rm -rf wrfout*
 }
 
 runNative () {
-    echo "WRF with $native_cpu CPU(s) started natively"
-    echo "Start (Native): $(date)"
+    echo "WRF with $native_cpu CPU(s) started"
+    echo "Start: $(date)"
     if [[ $which == "r" ]]; then
         . /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location &&  timeout 3600s mpirun -np $native_cpu ./wrf.exe;
     else
         . /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location && mpirun -np $native_cpu ./wrf.exe;
     fi
-    echo "Finish (Native): $(date)"
+    echo "Finish: $(date)"
     printNative
 }
 
 {
-if [[ $where == "n" ]]; then 
     read -p "How many CPUs? (Max: $host_cpu): " cpu
     while ! [[ $cpu =~ $re ]] || [[ $cpu -gt $host_cpu ]]; do
         echo "Invalid option, try again."
@@ -71,7 +70,7 @@ if [[ $where == "n" ]]; then
     done
     [[ $how == "i" ]] && {
         native_cpu=1; 
-        echo "Beginning WRF with $cpu cycles in Incremental and Native modes";
+        echo "Beginning WRF with $cpu cycles in Incremental modes";
         while [[ $native_cpu -le $cpu ]]; do
             runNative;
             echo "WRF with $native_cpu CPU(s) finished"
@@ -83,5 +82,4 @@ if [[ $where == "n" ]]; then
         runNative;
         echo "WRF with $cpu CPU(s) finished"
     }
-fi
 } 2>&1 | tee -a /home/wrfuser/logs/wrf_$date.log
