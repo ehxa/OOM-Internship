@@ -6,7 +6,6 @@ re='^[0-9]+$'
 host_cpu=$(nproc)
 date=$(date +"%Y%m%d-%H%M%S")
 j=1
-. /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location
 
 read -p "Which location do you want to run it? em_real (e) or run (r): " which
 
@@ -29,6 +28,8 @@ while [[ $how != "i" && $how != "s" ]]; do
     echo ""
     read -p "How do you want to run it? Single-run (s) or Incrementally (i): " how
 done
+
+. /home/wrfuser/iwrfvars.sh && cd /home/wrfuser/WRF/$location
 
 echo ""
 
