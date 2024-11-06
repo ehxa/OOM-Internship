@@ -1,5 +1,5 @@
 FROM intel/hpckit:2024.2.1-0-devel-rockylinux9
-LABEL version="0.3"
+LABEL version="0.1"
 
 #
 # Set up base OS environment
@@ -29,5 +29,3 @@ RUN echo "alias cp='cp -iv'" >> ~/.bashrc && \
     echo "alias mv='mv -iv'" >> ~/.bashrc && \
     echo "alias mkdir='mkdir -pv'" >> ~/.bashrc && \
     echo "alias ll='ls -FGlAhp'" >> ~/.bashrc
-
-COPY icxvars.sh /home/swe/icxvars.sh
