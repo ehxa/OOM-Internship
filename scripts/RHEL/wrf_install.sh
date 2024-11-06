@@ -23,7 +23,7 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 cd $HOME/wrf
-wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/RHEL/wrf_install.sh
+wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars.sh 
 source $HOME/wrf/gccvars.sh 
 
 #Install zlib
@@ -73,8 +73,13 @@ cp share/landread.c share/landread.backup && cp share/landread.c.dist share/land
 export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && ./configure #option 3
 ./compile
 
+#Remove used tar.gz files
+cd $HOME/wrf/libs
+rm -rf hdf5-1.10.5.tar.gz jasper-1.900.1.tar.gz libpng-1.6.37.tar.gz mpich-3.3.1.tar.gz v4.6.1.tar.gz v4.9.2.tar.gz zlib-1.2.11.tar.gz
+cd $HOME/wrf/Downloads
+rm -rf v4.2.tar.gz v4.4.2.tar.gz
+
 #Prepare WPS
-cd $HOME/wrf/WRF/WPS && vim namelist.wps #change geog_path
 cd $HOME/wrf/DATA && wget "https://testuma-my.sharepoint.com/:u:/g/personal/2042918_student_uma_pt/ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1"
 mv 'ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1 usa.zip'
 unzip usa.zip
