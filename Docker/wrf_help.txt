@@ -1,0 +1,67 @@
+-----------------------------------------------------------------------------
+Docker Help Commands - 2024/11/07 14:01
+-----------------------------------------------------------------------------
+[General commands]
+Check storage/disk usage:
+        docker system df
+
+Check usage per container:
+        docker container stats
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+[Container commands]
+Start a container:
+        docker start container_name
+
+Access a container:
+        docker exec -it container_name /bin/bash
+
+Stop a container:
+        docker stop container_name
+
+Create a container based on a image (wo/volumes):
+        docker run -it username/reponame:tag
+
+Create a container based on a image (w/volume):
+        docker run -it -v "$PWD/sourcedir":/desired_dir username/reponame:tag
+
+Backup a container:
+        docker commit container_name
+
+Duplicate a container:
+        docker commit container_name
+        docker run -it committed_image
+
+Rename a container:
+        docker rename current_name new_name
+
+Copy files to a container:
+        docker cp directory_or_file container_id:/desidered_dir
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+[Image commands]
+Create image based on a Dockerfile:
+        docker image build -t username/reponame:tag .
+
+Check all present images:
+        docker image ls
+
+Rename an image:
+        docker tag username/reponame:tag newusername/newreponame:newtag
+
+Delete images:
+        docker rmi imageID1 imageID2...
+
+Delete all unused images:
+        docker image prune
+
+Publish an image in Docker Hub:
+        docker push username/reponame:tag
+
+Pull an image from Docker Hub:
+        docker pull username/reponame:tag
+
+Create an image based on a container:
+        docker commit container_name
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
