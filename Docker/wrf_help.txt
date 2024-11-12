@@ -1,12 +1,16 @@
 -----------------------------------------------------------------------------
-Docker Help Commands - 2024/11/07 14:01
+Docker Help Commands - 2024/11/12 13:28
 -----------------------------------------------------------------------------
 [General commands]
-Check storage/disk usage:
+Check general storage/disk usage:
         docker system df
+
+Check detailed storage/disk usage:
+        docker system df -v
 
 Check usage per container:
         docker container stats
+
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
 [Container commands]
@@ -37,6 +41,10 @@ Rename a container:
 
 Copy files to a container:
         docker cp directory_or_file container_id:/desidered_dir
+
+Remove container:
+        docker rm container_id
+
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 [Image commands]
@@ -63,5 +71,12 @@ Pull an image from Docker Hub:
 
 Create an image based on a container:
         docker commit container_name
+
+Create tar file based on Docker image:
+        docker save -o filename.tar username/reponame:tag
+
+Import tar file as a Docker image:
+        docker load -i filename.tar
+
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
