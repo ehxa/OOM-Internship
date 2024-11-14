@@ -1,11 +1,11 @@
 #!/bin/bash
 #WRF Installation Script
 #Author: Diogo Gouveia (ehxa)
-#Version: 20241011
+#Version: 20241114
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 #Create Directories
-mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA
+mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA && mkdir $HOME/wrf/logs
 
 #Download Libraries
 cd $HOME/wrf/libs
@@ -81,17 +81,31 @@ rm -rf v4.2.tar.gz v4.4.2.tar.gz
 
 #Prepare WPS
 cd $HOME/wrf/DATA && wget "https://testuma-my.sharepoint.com/:u:/g/personal/2042918_student_uma_pt/ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1"
-mv 'ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1 usa.zip'
+mv 'ESWwLZ2x3txNt4jCHJlc6PYBy1hmiqv6AadP2ZfcDv6C9Q?e=3ouLNW&download=1' usa.zip
 unzip usa.zip
 rm -rf usa.zip
 
-cd $HOME/wrf/WRF/WPS && ./geogrid.exe >& log.geogrid
+cd $HOME/wrf/WRF/WPS && mv namelist.wps namelist.wps.backup
+mv $HOME/wrf/DATA/usa/wps/namelist.wps namelist.wps
+./geogrid.exe
 ls -ls geo_em*
-./link_grib.csh $HOME/wrf/DATA/gfs*
+ ./link_grib.csh $HOME/wrf/DATA/usa/wps/gfs/gfs*
 ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable
+./ungrib.exe
+ls -ls FILE*
+./metgrid.exe
+ls -ls met_em*
+
+#Test
+cd $HOME/wrf/WRF/WRF/test/em_real
+ln -sf $HOME/wrf/WRF/WPS/met_em* .
+mv namelist.input namelist.input.backup
+mv $HOME/wrf/DATA/usa/wrf/namelist.input namelist.input
+mpirun -np 1 ./real.exe
+tail rsl.error.0000
+ls -ls wrf*
 
 #Add WRF Running script
-wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/wrf_run.sh
+cd $HOME/wrf
+wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/wrf_run.sh
 chmod u+x $HOME/wrf/OOM-Internship/scripts/wrf_run.sh #Add run permissions to the user
-
-cd $HOME
