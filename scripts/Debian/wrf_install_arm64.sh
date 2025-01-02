@@ -36,8 +36,8 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 cd $HOME/wrf
-wget -O gccvars.sh https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars.sh
-. $HOME/wrf/gccvars.sh
+wget -O gccvars_arm64.sh https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars_arm64.sh
+. $HOME/wrf/gccvars_arm64.sh
 
 #Install zlib
 cd $HOME/wrf/libs/zlib-1.2.11 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
