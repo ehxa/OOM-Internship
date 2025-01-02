@@ -1,5 +1,5 @@
 #!/bin/bash
-#WRF Installation Guide (amd64)
+#WRF Installation Guide (arm64)
 #Author: Diogo Gouveia (ehxa)
 #Version: 20250102 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
@@ -36,42 +36,41 @@ tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/W
 
 #Set environment variables
 cd $HOME/wrf
-wget -O $HOME/wrf/gccvars.sh https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars.sh
+wget -O gccvars.sh https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars.sh
 . $HOME/wrf/gccvars.sh
 
 #Install zlib
-cd $HOME/wrf/libs/zlib-1.2.11 && ./configure --prefix=$DIR
+cd $HOME/wrf/libs/zlib-1.2.11 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
 make -j$(nproc)
 make install
 
 #Install hdf5
-cd $HOME/wrf/libs/hdf5-1.10.5 && ./configure --prefix=$DIR --with-zlib=$DIR --enable-fortran --enable-shared
+cd $HOME/wrf/libs/hdf5-1.10.5 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs --with-zlib=$HOME/wrf/libs --enable-fortran --enable-shared
 make -j$(nproc)
 make install
 
 #Install netcdf-c
-cd $HOME/wrf/libs/netcdf-c-4.9.2 && ./configure --prefix=$DIR --enable-netcdf-4
+cd $HOME/wrf/libs/netcdf-c-4.9.2 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs --enable-netcdf-4
 make -j$(nproc)
 make install
 
 #Install netcdf-fortran
-cd $HOME/wrf/libs/netcdf-fortran-4.6.1 && export HDF5_PLUGIN_PATH=$DIR && export LIBS="-lnetcdf -lhdf5_hl -lhdf5 -lz" && ./configure --prefix=$DIR
+cd $HOME/wrf/libs/netcdf-fortran-4.6.1 && export HDF5_PLUGIN_PATH=$HOME/wrf/libs && export LIBS="-lnetcdf -lhdf5_hl -lhdf5 -lz" && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
 make -j$(nproc)
 make install
 
 #Install mpich
-cd $HOME/wrf/libs/mpich-3.3.1 && ./configure --prefix=$DIR 
+cd $HOME/wrf/libs/mpich-3.3.1 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
 make -j$(nproc) 
 make install
 
 #Install libpng
-cd $HOME/wrf/libs/libpng-1.6.37 && ./configure --prefix=$DIR
+cd $HOME/wrf/libs/libpng-1.6.37 && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
 make -j$(nproc)
 make install
 
 #Install jasper
-cd $HOME/wrf/libs/jasper-1.900.1
-autoreconf -i && ./configure --prefix=$DIR
+cd $HOME/wrf/libs/jasper-1.900.1 && autoreconf -i && ./configure CFLAGS="-march=armv8-a" FCFLAGS="-march=armv8-a" --prefix=$HOME/wrf/libs
 make -j$(nproc)
 make install
 
