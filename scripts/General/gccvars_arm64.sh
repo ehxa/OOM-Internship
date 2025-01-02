@@ -1,11 +1,11 @@
 export DIR=$HOME/wrf/libs
-export CFLAGS="-march=armv8-a"
+#export CFLAGS="-march=armv8-a"
 export CC="gcc $CFLAGS"
 export CXX="g++ $CFLAGS"
 export FC=gfortran
-export FCFLAGS="-march=armv8-a -m64"
+#export FCFLAGS="-march=armv8-a"
 export F77=gfortran
-export FFLAGS="-march=armv8-a -m64"
+#export FFLAGS="-march=armv8-a"
 export HDF5=$DIR
 export LD_LIBRARY_PATH=$DIR/lib:$LD_LIBRARY_PATH
 export CPPFLAGS=-I$DIR/include
