@@ -1,5 +1,5 @@
 FROM ubuntu:24.04
-LABEL version="0.2"
+LABEL version="0.3"
 
 #
 # Set up base OS environment
