@@ -35,6 +35,7 @@ wget -c https://github.com/wrf-model/WRF/releases/download/v4.4.2/v4.4.2.tar.gz 
 tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/WRF && mv $HOME/wrf/WRF/WPS-4.2 $HOME/wrf/WRF/WPS
 
 #Set environment variables
+cd $HOME/wrf
 wget -O $HOME/wrf/gccvars.sh https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/General/gccvars.sh
 . $HOME/wrf/gccvars.sh
 
