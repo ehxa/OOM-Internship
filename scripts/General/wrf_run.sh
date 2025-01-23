@@ -40,14 +40,15 @@ done
 echo ""
 
 printNative () {
-    n=0 #count variable to print all rsl.out files
+    n=0 # count variable to print all rsl.out files
     while [[ $n -lt $native_cpu ]]; do
+        file=$(printf "%04d" $n)
         echo ""
-        echo "rsl.error.000$n result (Native):"
-        tail rsl.error.000$n
+        echo "rsl.error.$file result (Native):"
+        tail rsl.error.$file
         echo ""
-        echo "rsl.out.000$n result (Native):"
-        tail rsl.out.000$n
+        echo "rsl.out.$file result (Native):"
+        tail rsl.out.$file
         ((n++))
     done
     echo ""
@@ -194,4 +195,4 @@ else
     }
     j=0
 fi
-} 2>&1 | tee -a $HOME/wrf/OOM-Internship/logs/wrf_$date.log
+} 2>&1 | tee -a $HOME/wrf/logs/wrf_$date.log
