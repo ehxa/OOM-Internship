@@ -19,6 +19,8 @@ gcc --version
 g++ --version
 gfortran --version
 
+#Install packages
+sudo apt install -y make libxml2-dev m4 libcurl4-openssl-dev libtool csh
 
 #Download Libraries
 cd $HOME/wrf/libs
@@ -80,8 +82,8 @@ cd $HOME/wrf/WRF/WRF && export LDFLAGS="-L$HOME/wrf/libs/lib -lhdf5 -lhdf5_hl -l
 sed -i '919s/==/=/g' "configure"
 ./clean -a && echo -e "34\n1\n" | ./configure
 cp share/landread.c share/landread.backup && cp share/landread.c.dist share/landread.c
-./compile em_real -j$(nproc) | tee wrf_compilation.log
+./compile em_real | tee wrf_compilation.log
 
 #Install WPS
 export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && echo -e "3\n" | ./configure
-./compile -j$(nproc) | tee wps_compilation.log
+./compile | tee wps_compilation.log
