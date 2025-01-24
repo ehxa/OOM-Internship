@@ -87,3 +87,7 @@ cp share/landread.c share/landread.backup && cp share/landread.c.dist share/land
 #Install WPS
 export WRF_DIR=$HOME/wrf/WRF/WRF && cd $HOME/wrf/WRF/WPS && ./clean -a && echo -e "3\n" | ./configure
 ./compile | tee wps_compilation.log
+
+#Remove unneccssary files
+cd $HOME/wrf/Downloads && rm -rf *
+cd $HOME/wrf/libs && rm -rf hdf5-1.10.5.tar.gz jasper-1.900.1.tar.gz libpng-1.6.37.tar.gz mpich-3.3.1.tar.gz v4.6.1.tar.gz v4.9.2.tar.gz zlib-1.2.11.tar.gz
