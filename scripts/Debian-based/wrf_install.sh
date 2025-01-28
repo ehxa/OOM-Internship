@@ -8,12 +8,12 @@
 mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA
 
 #gcc 9.5 and g++
-sudo apt-get update
-sudo apt-get -y install gcc-9 g++-9 gfortran-9
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
-sudo update-alternatives --set gcc /usr/bin/gcc-9
-sudo update-alternatives --set g++ /usr/bin/g++-9
+sudo apt-get update && \
+sudo apt-get -y install gcc-9 g++-9 gfortran-9 && \
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 && \
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 && \
+sudo update-alternatives --set gcc /usr/bin/gcc-9 && \
+sudo update-alternatives --set g++ /usr/bin/g++-9 && \
 sudo ln -s /usr/bin/gfortran-9 /usr/bin/gfortran
 gcc --version
 g++ --version
