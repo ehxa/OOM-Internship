@@ -10,7 +10,7 @@ sudo mount /dev/sdb1 /WRF && \
 sudo mkdir /GEOG && \
 sudo mount /dev/sdc1 /GEOG && \
 sudo mkdir /LOGS && \
-sudo mount /dev/sdd /LOGS && \
+sudo mount /dev/sdd1 /LOGS && \
 sudo tar -xvf wrfcompiled.tar -C /home/ubuntu/ && \
 sudo tar -xvzf wrf_input.tar.gz -C /home/ubuntu/wrf/ARM/ && \
 sudo apt update && \
