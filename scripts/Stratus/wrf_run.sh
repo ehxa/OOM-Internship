@@ -199,4 +199,4 @@ else
     }
     j=0
 fi
-} 2>&1 | tee -a /LOGS/wrf_$date.log
+} 2>&1 | sudo tee -a /LOGS/wrf_$date.log
