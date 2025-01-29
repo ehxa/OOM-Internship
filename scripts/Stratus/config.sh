@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 #VM instance configuration
 #Author: Diogo Gouveia (ehxa)
 #Version: 20250129 (WIP)
