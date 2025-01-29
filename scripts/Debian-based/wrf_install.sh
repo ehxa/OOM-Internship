@@ -5,7 +5,7 @@
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 #Create Directories
-mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA
+mkdir $HOME/wrf && mkdir $HOME/wrf/libs && mkdir $HOME/wrf/Downloads && mkdir $HOME/wrf/WRF && mkdir $HOME/wrf/DATA && mkdir $HOME/wrf/logs && mkdir $HOME/wrf/ARM
 
 #gcc 9.5 and g++
 sudo apt-get update && \
