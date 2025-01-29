@@ -11,8 +11,8 @@ sudo mkdir -p /GEOG && \
 sudo mount /dev/sdc1 /GEOG || true && \
 sudo mkdir -p /LOGS && \
 sudo mount /dev/sdd1 /LOGS || true && \
-sudo tar -xvf wrfcompiled.tar -C /home/ubuntu/ && \
-sudo tar -xvzf wrf_input.tar.gz -C /home/ubuntu/wrf/ARM/ && \
+sudo tar -xvf /WRF/wrfcompiled.tar -C /home/ubuntu/ && \
+sudo tar -xvzf /WRF/wrf_input.tar.gz -C /home/ubuntu/wrf/ARM/ && \
 sudo apt update && \
 sudo apt install -y make libxml2-dev m4 libcurl4-openssl-dev libtool csh && \
 sudo apt-get -y install gcc-9 g++-9 gfortran-9 && \
