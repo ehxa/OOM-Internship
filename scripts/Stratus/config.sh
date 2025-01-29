@@ -4,6 +4,7 @@
 #Version: 20250129 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
+sudo mkdir $HOME/wrf && \
 sudo mkdir /WRF && \
 sudo mount /dev/sdb1 /WRF && \
 sudo mkdir /GEOG && \
