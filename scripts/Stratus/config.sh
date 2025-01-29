@@ -5,12 +5,12 @@
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 sudo mkdir -p $HOME/wrf && \
-sudo mkdir -P /WRF && \
-sudo mount /dev/sdb1 /WRF && \
+sudo mkdir -p /WRF && \
+sudo mount /dev/sdb1 /WRF || true && \
 sudo mkdir -p /GEOG && \
-sudo mount /dev/sdc1 /GEOG && \
+sudo mount /dev/sdc1 /GEOG || true && \
 sudo mkdir -p /LOGS && \
-sudo mount /dev/sdd1 /LOGS && \
+sudo mount /dev/sdd1 /LOGS || true && \
 sudo tar -xvf wrfcompiled.tar -C /home/ubuntu/ && \
 sudo tar -xvzf wrf_input.tar.gz -C /home/ubuntu/wrf/ARM/ && \
 sudo apt update && \
