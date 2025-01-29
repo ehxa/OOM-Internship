@@ -4,10 +4,10 @@
 #Version: 20250129 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
-sudo mkdir /GEOG && \
-sudo mount /dev/sdc1 /GEOG && \
 sudo mkdir /WRF && \
 sudo mount /dev/sdb1 /WRF && \
+sudo mkdir /GEOG && \
+sudo mount /dev/sdc1 /GEOG && \
 sudo mkdir /LOGS && \
 sudo mount /dev/sdd /LOGS && \
 sudo tar -xvf wrfcompiled.tar -C /home/ubuntu/ && \
