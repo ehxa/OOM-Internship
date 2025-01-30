@@ -96,13 +96,13 @@ runDocker () {
 
 startDocker () {
     if [[ $j -eq 1 ]]; then
-        systemctl --user start docker-desktop; 
+        sudo systemctl start docker; 
         sleep 20;
     fi
 }
 
 stopDocker () {
-    systemctl --user stop docker-desktop; 
+    sudo systemctl stop docker; 
 }
 
 runNative () {
