@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: wrf
+spec:
+  replicas: 3
+  serviceName: wrf
+  selector:
+    matchLabels:
+      app: wrf
+  template:
+    metadata:
+      labels:
+        app: wrf
+    spec:
+      volumes:
+      - name: wrf-storage
+        persistentVolumeClaim:
+          claimName: wrf-pvc
+      containers:
+      - name: wrf
+        image: ehxa:
+        volumeMounts:
+        - name: wrf-storage
+          mountPath: /wrf-data
+        command: ["mpirun"]
+        args: []
