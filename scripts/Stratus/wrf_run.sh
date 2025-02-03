@@ -79,31 +79,31 @@ printDocker () {
     while [[ $n -lt $docker_cpu ]]; do
         echo ""
         echo "rsl.error.000$n result (Docker):"
-        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.error.000$n"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.error.000$n"
         echo ""
         echo "rsl.out.000$n result (Docker):"
-        docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.out.000$n"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.out.000$n"
         ((n++))
     done
     echo ""
     echo "Present wrfout files (Docker):"
-    docker exec -i ubuntu24.04-wrf-gcc bash -c "ls -ls /home/swe/wrf/WRF/WRF/$location/wrfout*"
+    sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "ls -ls /home/swe/wrf/WRF/WRF/$location/wrfout*"
     echo ""
-    docker exec -i ubuntu24.04-wrf-gcc bash -c "rm -rf /home/swe/wrf/WRF/WRF/$location/rsl* /home/swe/wrf/WRF/WRF/$location/wrfout*"
+    sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "rm -rf /home/swe/wrf/WRF/WRF/$location/rsl* /home/swe/wrf/WRF/WRF/$location/wrfout*"
 }
 
 runDocker () {
-    docker start ubuntu24.04-wrf-gcc;
+    sudo docker start ubuntu24.04-wrf-gcc;
     echo "WRF with $docker_cpu CPU(s) started in Docker"
     echo "Start (Docker): $(date)"
     if [[ $which == "r" ]]; then
-        docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && timeout 3600s mpirun -np $docker_cpu ./wrf.exe;"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && timeout 3600s mpirun -np $docker_cpu ./wrf.exe;"
     else
-        docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && mpirun -np $docker_cpu ./wrf.exe;"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c ". /home/swe/wrf/gccvars.sh && cd /home/swe/wrf/WRF/WRF/$location && mpirun -np $docker_cpu ./wrf.exe;"
     fi
     echo "Finish (Docker): $(date)"
     printDocker
-    docker stop ubuntu24.04-wrf-gcc;
+    sudo docker stop ubuntu24.04-wrf-gcc;
 }
 
 startDocker () {
