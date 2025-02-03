@@ -49,9 +49,9 @@ else
     log="Mixed"
 fi
 
-mkdir -p /LOGS/Native
-mkdir -p /LOGS/Docker
-mkdir -p /LOGS/Mixed
+sudo mkdir -p /LOGS/Native
+sudo mkdir -p /LOGS/Docker
+sudo mkdir -p /LOGS/Mixed
 
 echo ""
 

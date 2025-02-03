@@ -20,7 +20,7 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 && \
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 && \
 sudo update-alternatives --set gcc /usr/bin/gcc-9 && \
 sudo update-alternatives --set g++ /usr/bin/g++-9 && \
-sudo ln -s /usr/bin/gfortran-9 /usr/bin/gfortran && \
+ln -s /usr/bin/gfortran-9 /usr/bin/gfortran && \
 gcc --version && \
 g++ --version && \
 gfortran --version && \
@@ -32,4 +32,4 @@ sudo systemctl stop docker && \
 sudo systemctl stop docker.socket && \
 cd $HOME/wrf/WRF/WRF/run && \
 mv namelist.input namelist.input.backup && \
-sudo ln -s /home/ubuntu/wrf/ARM/wrf_tmp/* .
+ln -s /home/ubuntu/wrf/ARM/wrf_tmp/* /home/ubuntu/wrf/WRF/WRF/run
