@@ -41,6 +41,18 @@ while [[ $where != "n" && $where != "d" && $where != "m"  ]]; do
     read -p "Where do you want to run it? Native (n), Docker (d) or Mixed (m): " where
 done
 
+if [[ $where == "n" ]]; then
+    log="Native"
+elif [[ $where == "d" ]]; then
+    log="Docker"
+else
+    log="Mixed"
+fi
+
+mkdir -p /LOGS/Native
+mkdir -p /LOGS/Docker
+mkdir -p /LOGS/Mixed
+
 echo ""
 
 printNative () {
@@ -103,6 +115,7 @@ startDocker () {
 
 stopDocker () {
     sudo systemctl stop docker; 
+    sudo systemctl stop docker.socket;
 }
 
 runNative () {
@@ -199,4 +212,4 @@ else
     }
     j=0
 fi
-} 2>&1 | sudo tee -a /LOGS/wrf_$date.log
+} 2>&1 | sudo tee -a /LOGS/$log/wrf_$date.log
