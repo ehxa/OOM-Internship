@@ -1,7 +1,7 @@
 #!/bin/bash
 #Docker in instance configuration
 #Author: Diogo Gouveia (ehxa)
-#Version: 20250130 (WIP)
+#Version: 20250203 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 docker pull ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script for showing WRF start and end (date and time) for Stratus
 #Author: Diogo Gouveia (ehxa)
-#Version: 20250129 (WIP)
+#Version: 20250203 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 echo "Welcome to WRF!"
