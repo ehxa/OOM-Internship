@@ -20,10 +20,11 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9 && \
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9 && \
 sudo update-alternatives --set gcc /usr/bin/gcc-9 && \
 sudo update-alternatives --set g++ /usr/bin/g++-9 && \
-ln -s /usr/bin/gfortran-9 /usr/bin/gfortran && \
+sudo ln -s /usr/bin/gfortran-9 /usr/bin/gfortran && \
 gcc --version && \
 g++ --version && \
 gfortran --version && \
+cd $HOME && \
 wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/Stratus/wrf_run.sh && \
 chmod u+x wrf_run.sh && \
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove -y $pkg; done && sudo apt-get update -y && sudo apt-get install -y ca-certificates curl && sudo install -m 0755 -d /etc/apt/keyrings && sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && sudo chmod a+r /etc/apt/keyrings/docker.asc && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && sudo apt-get update -y && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && sudo groupadd docker && sudo usermod -aG docker ubuntu && newgrp docker && \
@@ -36,5 +37,5 @@ sudo systemctl stop docker && \
 sudo systemctl stop docker.socket && \
 cd $HOME/wrf/WRF/WRF/run && \
 mv namelist.input namelist.input.backup && \
-ln -s /home/ubuntu/wrf/ARM/wrf_tmp/* /home/ubuntu/wrf/WRF/WRF/run
+sudo ln -s /home/ubuntu/wrf/ARM/wrf_tmp/* /home/ubuntu/wrf/WRF/WRF/run
 cd $HOME
