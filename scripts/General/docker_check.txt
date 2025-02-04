@@ -1,0 +1,2 @@
+sudo docker exec -it ubuntu24.04-wrf-gcc bash
+tail -f wrf/WRF/WRF/run/rsl.out.0000
