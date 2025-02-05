@@ -77,12 +77,13 @@ printNative () {
 printDocker () {
     n=0 #count variable to print all rsl.out files
     while [[ $n -lt $docker_cpu ]]; do
+        file=$(printf "%04d" $n)
         echo ""
-        echo "rsl.error.000$n result (Docker):"
-        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.error.000$n"
+        echo "rsl.error.$file result (Docker):"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.error.$file"
         echo ""
-        echo "rsl.out.000$n result (Docker):"
-        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.out.000$n"
+        echo "rsl.out.$file result (Docker):"
+        sudo docker exec -i ubuntu24.04-wrf-gcc bash -c "tail /home/swe/wrf/WRF/WRF/$location/rsl.out.$file"
         ((n++))
     done
     echo ""
