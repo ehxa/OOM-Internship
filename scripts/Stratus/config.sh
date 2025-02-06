@@ -29,7 +29,7 @@ for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker c
 sudo docker pull ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
 sudo docker run -d --name ubuntu24.04-wrf-gcc ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured tail -f /dev/null
 sudo docker cp /WRF/wrf_input.tar.gz ubuntu24.04-wrf-gcc:/WRF/
-sudo docker exec ubuntu24.04-wrf-gcc bash -c "sudo tar -xvzf /WRF/wrf_input.tar.gz -C /home/swe/wrf/ARM/ && ln -s /home/swe/wrf/ARM/wrf_tmp/* /home/swe/wrf/WRF/WRF/run/"
+sudo docker exec ubuntu24.04-wrf-gcc bash -c "mkdir -p /home/swe/wrf/ARM && sudo tar -xvzf /WRF/wrf_input.tar.gz -C /home/swe/wrf/ARM/ && ln -s /home/swe/wrf/ARM/wrf_tmp/* /home/swe/wrf/WRF/WRF/run/"
 sudo docker stop ubuntu24.04-wrf-gcc
 sudo systemctl stop docker
 sudo systemctl stop docker.socket
