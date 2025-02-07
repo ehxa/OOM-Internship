@@ -1,7 +1,7 @@
 #!/bin/bash
-#VM instance configuration (Ubuntu)
+#VM instance configuration (Almalinux)
 #Author: Diogo Gouveia (ehxa)
-#Version: 20250103 (WIP)
+#Version: 20250207 (WIP)
 #For the most recent updates check the repository: https://github.com/ehxa/OOM-Internship
 
 sudo mkdir -p $HOME/wrf
@@ -11,11 +11,12 @@ sudo mkdir -p /GEOG
 sudo mount /dev/sdc1 /GEOG || true
 sudo mkdir -p /LOGS
 sudo mount /dev/sdd1 /LOGS || true
-sudo tar -xvf /WRF/wrfcompiled.tar -C /home/ubuntu/
-sudo tar -xvzf /WRF/wrf_input.tar.gz -C /home/ubuntu/wrf/ARM/
-sudo apt update
-sudo apt install -y make libxml2-dev m4 libcurl4-openssl-dev libtool csh
-sudo apt-get -y install gcc-9 g++-9 gfortran-9
+sudo tar -xvf /WRF/wrfcompiled.tar -C /home/almalinux/
+sudo tar -xvzf /WRF/wrf_input.tar.gz -C /home/almalinux/wrf/ARM/
+sudo dnf -y update
+sudo dnf install -y epel-release
+sudo dnf install -y glibc-langpack-en file libpng-devel vim python3 hostname m4 make perl tar bash tcsh time wget which git cmake pkgconfig libxml2-devel libcurl-devel openssh-clients openssh-server net-tools fontconfig libXext libXrender ImageMagick gmp-devel mpfr-devel libmpc-devel gcc-toolset-9
+sudo dnf clean all
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
 sudo update-alternatives --set gcc /usr/bin/gcc-9
@@ -35,5 +36,5 @@ sudo systemctl stop docker
 sudo systemctl stop docker.socket
 cd $HOME/wrf/WRF/WRF/run
 mv namelist.input namelist.input.backup
-ln -s /home/ubuntu/wrf/ARM/wrf_tmp/* /home/ubuntu/wrf/WRF/WRF/run
+ln -s /home/almalinux/wrf/ARM/wrf_tmp/* /home/almalinux/wrf/WRF/WRF/run
 cd $HOME
