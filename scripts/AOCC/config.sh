@@ -9,4 +9,4 @@ spack install aocc +license-agreed
 spack cd -i aocc
 spack compiler add $PWD
 spack load aocc
-spack install wrf %aocc@4.4.2 build_type=dmpar #^openmpi fabrics=cma,ucx
+spack install wrf@4.4.2 %aocc build_type=dmpar #^openmpi fabrics=cma,ucx

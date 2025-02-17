@@ -1,0 +1,1 @@
+sudo snap install k8s --channel= 1.32-classic/stable --classic
