@@ -15,6 +15,7 @@ spec:
             export WRF_CPUS=${WRF_CPUS:-8}   
             cd /home/swe/wrf/WRF/WRF/test/em_real/               
             mpirun -np $WRF_CPUS ./wrf.exe
+            
         env:
         - name: WRF_CPUS
           value: "8"
