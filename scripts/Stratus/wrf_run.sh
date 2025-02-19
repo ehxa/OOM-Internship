@@ -193,7 +193,7 @@ elif [[ $where == "d" ]]; then
             ((docker_cpu++))
         done
         stopDocker
-    elif [[ $how == "s"]]; then
+    elif [[ $how == "s" ]]; then
         docker_cpu=$cpu
         echo "Beginning WRF with $cpu CPU(s) in Single-run and Docker modes"
         startDocker
