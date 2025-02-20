@@ -17,10 +17,11 @@ spec:
             cp /ARM/wrf_input.tar.gz /home/swe/wrf/ARM/
             tar -xvzf /home/swe/wrf/ARM/wrf_input.tar.gz -C /home/swe/wrf/ARM/
             ln -s /home/swe/wrf/ARM/wrf_tmp/* /home/swe/wrf/WRF/WRF/run/
-            cd /home/swe/wrf/WRF/run/
+            cd /home/swe/wrf/WRF/WRF/run/
             timeout 3600s mpirun -np $WRF_CPUs ./wrf.exe
             wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/Kubernetes/k8s-print.sh
             chmod u+x k8s-print.sh
+            ./k8s-print.sh
         env:
         - name: WRF_CPUS
           value: "8"
