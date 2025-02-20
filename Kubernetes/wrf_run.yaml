@@ -6,38 +6,37 @@ spec:
   template:
     spec:
       containers:
-      - name: wrf-k8s
-        image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
-        command: ["/bin/bash", "-c"]
-        args:
-          - |
-            . /home/swe/wrf/gccvars.sh
-            export WRF_CPUS=${WRF_CPUS:-8}
-            mkdir -p /home/swe/wrf/ARM
-            cp /ARM/wrf_input.tar.gz /home/swe/wrf/ARM/
-            tar -xvzf /home/swe/wrf/ARM/wrf_input.tar.gz -C /home/swe/wrf/ARM/
-            ln -s /home/swe/wrf/ARM/wrf_tmp/* /home/swe/wrf/WRF/WRF/run/
-            cd /home/swe/wrf/WRF/WRF/run/
-            timeout 3600s mpirun -np $WRF_CPUs ./wrf.exe
-            wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/Kubernetes/k8s-print.sh
-            chmod u+x k8s-print.sh
-            ./k8s-print.sh
-        env:
-        - name: WRF_CPUS
-          value: "8"
-        resources:
-          requests:
-            cpu: "8"
-            memory: "8Gi"
-          limits:
-            cpu: "8"
-            memory: "16Gi"
-        volumeMounts:
-        - mountPath: /ARM 
-          name: input-volume  
+        - name: wrf-k8s
+          image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              . /home/swe/wrf/gccvars.sh
+              export WRF_CPUS=${WRF_CPUS:-8}
+              mkdir -p /home/swe/wrf/ARM
+              tar -xvzf /home/swe/wrf/ARM/wrf_input.tar.gz -C /home/swe/wrf/ARM/
+              ln -s /home/swe/wrf/ARM/wrf_tmp/* /home/swe/wrf/WRF/WRF/run/
+              cd /home/swe/wrf/WRF/WRF/run/
+              timeout 3600s mpirun -np $WRF_CPUS ./wrf.exe
+              wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/Kubernetes/k8s-print.sh
+              chmod u+x k8s-print.sh
+              ./k8s-print.sh
+          env:
+            - name: WRF_CPUS
+              value: "8"
+          resources:
+            requests:
+              cpu: "8"
+              memory: "8Gi"
+            limits:
+              cpu: "8"
+              memory: "16Gi"
+          volumeMounts:
+            - mountPath: /home/swe/wrf/ARM
+              name: input-volume
       volumes:
-      - name: input-volume
-        hostPath:
-          path: /ARM  
-          type: DirectoryOrCreate  
+        - name: input-volume
+          hostPath:
+            path: /WRF
+            type: DirectoryOrCreate
       restartPolicy: Never
