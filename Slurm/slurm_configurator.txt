@@ -1,0 +1,5 @@
+Normal:
+https://slurm.schedmd.com/configurator.html 
+
+Easy:
+https://slurm.schedmd.com/configurator.html
