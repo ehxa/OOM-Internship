@@ -26,3 +26,5 @@ wget -c https://github.com/wrf-model/WRF/releases/download/v4.4.2/v4.4.2.tar.gz 
 tar -xvzf v4.4.2.tar.gz -C $HOME/wrf/WRF && tar -xvzf v4.2.tar.gz -C $HOME/wrf/WRF && mv $HOME/wrf/WRF/WPS-4.2 $HOME/wrf/WRF/WPS
 cd $HOME/wrf
 wget https://raw.githubusercontent.com/ehxa/OOM-Internship/refs/heads/main/scripts/ICC/iccvars.sh
+. /home/ubuntu/intel/oneapi/setvars.sh
+. iccvars.sh
