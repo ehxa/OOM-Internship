@@ -8,5 +8,5 @@ read -p "How many tasks p/node?  " tasks_p_node
 
 echo ""
 {
-    sbatch --nodes=$nodes --ntasks=$tasks --nodes=$nodes --cpus-per-task=$tasks_p_node /GEOG/wrf_sbatch.sh
+    sbatch --nodes=$nodes --ntasks=$tasks --nodes=$nodes --ntasks-per-node=$tasks_p_node /GEOG/wrf_sbatch.sh
 } 2>&1 | sudo tee -a /LOGS/Slurm/wrf_$date.log
