@@ -26,10 +26,10 @@ while [[ $n -lt $tasks ]]; do
 	file=$(printf "%04d" $n)
         echo ""
         echo "rsl.error.$file result (Slurm):"
-        tail rsl.error.$file
+        tail -25 rsl.error.$file
         echo ""
         echo "rsl.out.$file result (Slurm):"
-        tail rsl.out.$file
+        tail -25 rsl.out.$file
         ((n++))
 done
 echo ""
