@@ -19,7 +19,7 @@ export tasks_p_node=2
 echo "Starting $tasks WRF tasks on $nodes nodes and with $tasks_p_node tasks p/node."
 echo "WRF start: $(date +"%Y/%m/%d %H:%M:%S")"
 cd /GEOG/wrf/WRF/WRF/run
-timeout 3600s srun --nodes=$nodes --ntasks=$tasks --ntasks-per-node=$tasks_p_node ./wrf.exe
+timeout 3600s srun --nodes=$nodes --ntasks=$tasks --ntasks-per-node=$tasks_p_node --mpi=pmi2 ./wrf.exe
 echo "WRF finished: $(date +"%Y/%m/%d %H:%M:%S")"
 n=0 
 while [[ $n -lt $tasks ]]; do
