@@ -1,5 +1,6 @@
 read -p "Insert the volume name: " volume
 n=0;
+echo ""
 echo "Benchmarking disk $volume"
 echo "------------- Buffered disk read spead test -------------"
 while [ $n -lt 10 ]; do
@@ -9,6 +10,7 @@ while [ $n -lt 10 ]; do
     sleep 1
 done
 n=0;
+echo ""
 echo "------------- Cached read speed test -------------"
 while [ $n -lt 10 ]; do
     sudo hdparm -T /dev/$volume
