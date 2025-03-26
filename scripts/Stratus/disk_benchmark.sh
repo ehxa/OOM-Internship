@@ -1,8 +1,9 @@
 read -p "Insert the volume name: " volume
 n=1;
 echo ""
+{
 echo "Benchmarking disk $volume"
-echo "------------- Buffered disk read spead test -------------"
+echo "------------- Buffered disk read speed test -------------"
 while [ $n -lt 11 ]; do
     echo 3 | sudo tee /proc/sys/vm/drop_caches
     echo "Test $n"
@@ -10,7 +11,7 @@ while [ $n -lt 11 ]; do
     n=$((n+1))
     sleep 1
 done
-n=0;
+n=1;
 echo ""
 echo "------------- Cached read speed test -------------"
 while [ $n -lt 11 ]; do
@@ -19,5 +20,5 @@ while [ $n -lt 11 ]; do
     n=$((n+1))
     sleep 1
 done
-n=0;
-echo "Benchmarking finished"
+echo "Benchmarking finished" 
+} 2>&1 | sudo tee -a /LOGS/Disks/$volume.log
