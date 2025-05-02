@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wrf-em_real
+  name: wrf-em_real-multinode
 spec:
   completions: 1
   template:
@@ -14,12 +14,12 @@ spec:
         - |
           . /home/swe/wrf/gccvars.sh &&
           cd /home/swe/wrf/WRF/WRF/test/em_real &&
-          mpirun -np 4 ./wrf.exe
-          echo "WRF job completed"
-          echo ""
-          echo "rsl.error.0000:"
-          tail -n 15 /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.0000
-          echo "rsl.out.0000:"
-          echo ""
+          mpirun -np 4 --host wrf-worker-0:2,wrf-worker-1:2 ./wrf.exe &&
+          echo "WRF job completed" &&
+          echo "" &&
+          echo "rsl.error.0000:" &&
+          tail -n 15 /home/swe/wrf/WRF/WRF/test/em_real/rsl.error.0000 &&
+          echo "rsl.out.0000:" &&
+          echo "" &&
           tail -n 15 /home/swe/wrf/WRF/WRF/test/em_real/rsl.out.0000
       restartPolicy: Never
