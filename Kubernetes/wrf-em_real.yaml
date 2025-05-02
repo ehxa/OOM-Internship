@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wrf-em_real
+  name: wrf-emreal
 spec:
   completions: 1
   template:
