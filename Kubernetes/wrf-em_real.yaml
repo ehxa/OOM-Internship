@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wrf-job
+spec:
+  completions: 1
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: wrf
+        image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          source /home/swe/wrf/gccvars.sh &&
+          cd /home/swe/wrf/WRF/WRF/test/em_real &&
+          mpirun -np 4 ./wrf.exe
+      restartPolicy: Never
