@@ -4,7 +4,6 @@ metadata:
   name: wrf-job
 spec:
   completions: 1
-  parallelism: 2
   template:
     spec:
       containers:
