@@ -12,7 +12,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
-          source /home/swe/wrf/gccvars.sh &&
+          . /home/swe/wrf/gccvars.sh &&
           cd /home/swe/wrf/WRF/WRF/test/em_real &&
           mpirun -np 4 ./wrf.exe
       restartPolicy: Never
