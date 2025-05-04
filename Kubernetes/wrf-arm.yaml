@@ -1,0 +1,50 @@
+apiVersion: kubeflow.org/v2beta1
+kind: MPIJob
+metadata:
+  name: wrf-arm
+spec:
+  slotsPerWorker: 2
+  runPolicy:
+    cleanPodPolicy: Running
+  mpiReplicaSpecs:
+    Launcher:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+            name: wrf
+            command: ["/bin/bash", "-c"]
+            args:
+              - |
+                . /home/swe/wrf/gccvars.sh &&
+                cd /mnt/data &&
+                timeout 3600s mpirun -np 4 ./wrf.exe &&
+                echo "WRF job completed" &&
+                echo "" &&
+                echo "rsl.error.0000:" &&
+                tail -n 15 rsl.error.0000 &&
+                echo "rsl.out.0000:" &&
+                tail -n 15 rsl.out.0000
+            volumeMounts:
+            - name: wrf-volume
+              mountPath: /mnt/data
+    Worker:
+      replicas: 2
+      template:
+        spec:
+          containers:
+          - image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+            name: wrf
+            command: ["/bin/bash", "-c"]
+            args:
+              - |
+                . /home/swe/wrf/gccvars.sh &&
+                sleep infinity
+            volumeMounts:
+            - name: wrf-volume
+              mountPath: /mnt/data  
+  volumes:
+  - name: wrf-volume
+    persistentVolumeClaim:
+      claimName: wrf-arm-pvc  
