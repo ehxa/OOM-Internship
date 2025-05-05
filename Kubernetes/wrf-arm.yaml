@@ -20,7 +20,7 @@ spec:
                 . /home/swe/wrf/gccvars.sh &&
                 cd /home/swe/wrf/WRF/WRF/run/ &&
                 cp /mnt/data/* . &&
-                timeout 60s mpirun -np 4 ./wrf.exe || true &&
+                timeout 3600s mpirun -np 4 ./wrf.exe || true &&
                 echo "WRF job completed" &&
                 echo "" &&
                 echo "rsl.error.0000:" &&
