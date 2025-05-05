@@ -18,8 +18,9 @@ spec:
             args:
               - |
                 . /home/swe/wrf/gccvars.sh &&
-                cd /mnt/data &&
-                timeout 3600s mpirun -np 4 ./wrf.exe &&
+                cd /home/swe/wrf/WRF/WRF/run/ &&
+                cp /mnt/data/* . &&
+                timeout 60s mpirun -np 4 ./wrf.exe || true &&
                 echo "WRF job completed" &&
                 echo "" &&
                 echo "rsl.error.0000:" &&
@@ -27,8 +28,13 @@ spec:
                 echo "rsl.out.0000:" &&
                 tail -n 15 rsl.out.0000
             volumeMounts:
-            - name: wrf-volume
+            - name: wrf-arm-volume
               mountPath: /mnt/data
+          volumes:
+          - name: wrf-arm-volume
+            persistentVolumeClaim:
+              claimName: wrf-arm-pvc
+
     Worker:
       replicas: 2
       template:
@@ -42,9 +48,9 @@ spec:
                 . /home/swe/wrf/gccvars.sh &&
                 sleep infinity
             volumeMounts:
-            - name: wrf-volume
-              mountPath: /mnt/data  
-  volumes:
-  - name: wrf-volume
-    persistentVolumeClaim:
-      claimName: wrf-arm-pvc  
+            - name: wrf-arm-volume
+              mountPath: /mnt/data
+          volumes:
+          - name: wrf-arm-volume
+            persistentVolumeClaim:
+              claimName: wrf-arm-pvc
