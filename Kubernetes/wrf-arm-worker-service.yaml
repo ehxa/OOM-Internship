@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wrf-arm-workers
+spec:
+  selector:
+    app: wrf
+    role: worker
+  ports:
+    - protocol: TCP
+      port: 22      
+      targetPort: 22 
+  clusterIP: None   

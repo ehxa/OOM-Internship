@@ -1,0 +1,4 @@
+ssh-keygen -t rsa -b 4096 -f /home/swe/.ssh/id_rsa -N ""
+cat /home/swe/.ssh/id_rsa.pub
+ssh-keygen -f '/home/swe/.ssh/known_hosts' -R 'wrf-arm-service'
+ssh swe@wrf-arm-service
