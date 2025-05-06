@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wrf-arm-worker-1
+  labels:
+    app: wrf
+    role: worker
+spec:
+  containers:
+  - name: wrf
+    image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+    ports:
+      - containerPort: 22
+    command: ["/bin/bash", "-c"]
+    args:
+      - |
+        sudo apt update && sudo apt install -y openssh-server && \
+        mkdir -p /home/swe/.ssh && \
+        chown swe:swe /home/swe/.ssh && \
+        chmod 700 /home/swe/.ssh && \
+        echo "" >> /home/swe/.ssh/authorized_keys && \
+        chown swe:swe /home/swe/.ssh/authorized_keys && \
+        chmod 600 /home/swe/.ssh/authorized_keys && \
+        sudo ssh-keygen -A && \
+        sudo /usr/sbin/service ssh start && \
+        sleep infinity
+    volumeMounts:
+    - name: wrf-arm-volume
+      mountPath: /mnt/data
+  volumes:
+  - name: wrf-arm-volume
+    persistentVolumeClaim:
+      claimName: wrf-arm-pvc
