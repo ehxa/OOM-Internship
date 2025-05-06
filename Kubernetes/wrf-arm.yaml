@@ -1,18 +1,20 @@
 apiVersion: kubeflow.org/v2beta1
 kind: MPIJob
 metadata:
-  name: wrf-arm5
+  name: wrf-arm
 spec:
   slotsPerWorker: 2
   runPolicy:
     cleanPodPolicy: Running
+    ttlSecondsAfterFinished: 300
+  sshAuthMountPath: /home/swe/.ssh
   mpiReplicaSpecs:
     Launcher:
       replicas: 1
       template:
         spec:
           containers:
-          - image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+          - image: ehxa/oom:ubuntu24.04-gcc-20250506-1104-k8s
             name: wrf
             command: ["/bin/bash", "-c"]
             args:
@@ -20,15 +22,15 @@ spec:
                 . /home/swe/wrf/gccvars.sh &&
                 cd /home/swe/wrf/WRF/WRF/run/ &&
                 cp /mnt/data/* . &&
-                timeout 3600s mpirun -np 4 --hostfile hosts.txt ./wrf.exe || true &&
+                timeout 3600s mpirun -np 4 ./wrf.exe || true &&
                 echo "WRF job completed" &&
                 echo "" &&
                 echo "rsl.error.0000:" &&
                 tail -n 15 rsl.error.0000 &&
                 echo "rsl.out.0000:" &&
                 tail -n 15 rsl.out.0000
-                cp rsl.error.0000 /mnt/data/rsl.error.0000 &&
-                cp rsl.out.0000 /mnt/data/rsl.out.0000
+                cp rsl.error.0000 /mnt/data/ &&
+                cp rsl.out.0000 /mnt/data/
             volumeMounts:
             - name: wrf-arm-volume
               mountPath: /mnt/data
@@ -42,13 +44,10 @@ spec:
       template:
         spec:
           containers:
-          - image: ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+          - image: ehxa/oom:ubuntu24.04-gcc-20250506-1104-k8s
             name: wrf
-            command: ["/bin/bash", "-c"]
-            args:
-              - |
-                . /home/swe/wrf/gccvars.sh &&
-                sleep infinity
+            command: ["/usr/sbin/sshd"]
+            args: ["-De"]
             volumeMounts:
             - name: wrf-arm-volume
               mountPath: /mnt/data
