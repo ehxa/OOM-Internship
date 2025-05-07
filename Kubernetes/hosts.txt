@@ -1,0 +1,2 @@
+wrf-arm-worker-0
+wrf-arm-worker-1

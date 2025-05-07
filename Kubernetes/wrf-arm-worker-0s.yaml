@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: wrf-arm-worker-0
+  name: wrf-arm-worker-0s
   labels:
     app: wrf
     role: worker
@@ -14,8 +14,8 @@ spec:
     command: ["/bin/bash", "-c"]
     args:
       - |
-        sudo apt update && sudo apt install -y openssh-server && \
-        sudo /usr/sbin/service ssh start && \
+        ssh-keygen -t rsa -b 4096 -f /home/swe/.ssh/id_rsa -N "" &&
+        cat /home/swe/.ssh/id_rsa.pub && 
         sleep infinity
     volumeMounts:
     - name: wrf-arm-volume
