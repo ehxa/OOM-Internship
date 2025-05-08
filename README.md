@@ -15,6 +15,7 @@ The developed Docker images can be found on the following Docker Hub repository:
 
 The most recent working image (linux/amd64) is: 
 - ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+Note: Other images are kept for record or further development/analysis and are provided as is. This includes images with newer dates. As such, please refer always to the image pointed above.
 
 Credits: 
 - OOM (Observatório Oceânico da Madeira)
