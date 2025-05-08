@@ -27,7 +27,7 @@ b. kubectl logs wrf-worker0\
 c. echo "wrf-arm-master RSA public key" >> /home/swe/.ssh/authorized_keys\
 d. echo "wrf-arm-worker0 RSA public key" >> /home/swe/.ssh/authorized_keys\
 e. ssh swe@wrf-arm-worker0 #Say yes\
-f. exit\
+f. exit
 
 ## 5. Copy hosts.txt to the directory used in 1.a.
 
