@@ -1,7 +1,7 @@
 # How to use and configure Kubernetes for running WRF (Single master pod and dual-worker pod configuration)
 
 ## 1. Create storage for running WRF and for input data
-a. kubectl apply -f wrf-arm-pv.yaml #Note: Make sure to change the path variable in this YAML for a actual share directory\
+a. kubectl apply -f wrf-arm-pv.yaml #Note: Make sure to change the path variable in this YAML for a actual shared directory\
 b. kubectl apply -f wrf-arm-pvc.yaml
 
 ## 2. Create the services for inter-pod comnunication
