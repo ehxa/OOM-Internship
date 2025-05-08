@@ -12,7 +12,7 @@ You can find this work divided in 5 directories:
 
 The developed Docker images can be found on the following Docker Hub repository: 
 - https://hub.docker.com/repository/docker/ehxa/oom/general
-- 
+
 The most recent working image (linux/amd64) is: 
 - ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
 
