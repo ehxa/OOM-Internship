@@ -1,2 +1,2 @@
-wrf-arm-worker0
-wrf-arm-worker1
+wrf-worker0
+wrf-worker1
