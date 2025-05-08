@@ -1,4 +1,6 @@
-This work is part of the Masters Thesis for Informatics Engineering with the aim of studying the WRF (Weather Research & Forecasting) model on multiple platforms and environments, while leveraging native, Docker, Slurm and Kubernetes technologies.
+**Containerizing and Evaluating the WRF model for Cloud-Based HPC**
+
+This work is part of the Master of Science Degree for Informatics Engineering with the aim of studying the WRF (Weather Research & Forecasting) model on multiple platforms and environments, while leveraging native, Docker, Slurm and Kubernetes technologies.
 As such, we aim to ease the use of WRF with Docker images on HPC clusters and Cloud environments, while evaluating the performance.
 
 You can find this work divided on 5 directories:
