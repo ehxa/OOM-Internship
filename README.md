@@ -10,6 +10,12 @@ You can find this work divided in 5 directories:
 4. logs: Test results using sample data from NCEP (National Centers for Environment Prediction (NCEP).
 5. scripts: Scripts for General and CSP (Cloud Service Provider) specific (CNCA's (National Center for Advanced Computing) Stratus cloud platform) configuration and WRF execution.
 
+The developed Docker images can be found on the following Docker Hub repository: 
+- https://hub.docker.com/repository/docker/ehxa/oom/general
+- 
+The most recent working image (linux/amd64) is: 
+- ehxa/oom:ubuntu24.04-gcc-20250130-1250-configured
+
 Credits: 
 - OOM (Observatório Oceânico da Madeira)
 - NCAR (National Center for Atmospheric Research)
