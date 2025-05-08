@@ -21,7 +21,7 @@ d. echo "wrf-arm-worker1 RSA public key" >> /home/swe/.ssh/authorized_keys\
 e. ssh swe@wrf-arm-worker1 #Say yes\
 f. exit
 
-## 4. Configure ssh access to the other pods in wrf-arm-worker0:
+## 4. Configure ssh access to the other pods in wrf-arm-worker1:
 a. kubectl logs wrf-arm-master\
 b. kubectl logs wrf-worker0\
 c. echo "wrf-arm-master RSA public key" >> /home/swe/.ssh/authorized_keys\
