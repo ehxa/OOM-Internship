@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: wrf-arm-worker1
+  name: wrf-worker0
   labels:
     app: wrf
-    role: worker1
+    role: worker0
 spec:
   containers:
   - name: wrf
@@ -20,9 +20,9 @@ spec:
         cat /home/swe/.ssh/id_rsa.pub &&
         sleep infinity
     volumeMounts:
-    - name: wrf-arm-volume
+    - name: wrf-volume
       mountPath: /mnt/data
   volumes:
-  - name: wrf-arm-volume
+  - name: wrf-volume
     persistentVolumeClaim:
-      claimName: wrf-arm-pvc
+      claimName: wrf-pvc

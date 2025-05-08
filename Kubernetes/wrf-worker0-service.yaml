@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wrf-arm-worker1
+  name: wrf-worker0
 spec:
   selector:
     app: wrf
-    role: worker1
+    role: worker0
   ports:
     - protocol: TCP
       port: 22      
