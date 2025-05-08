@@ -2,7 +2,7 @@
 
 ## 1. Create storage for running WRF and for input data
 a. kubectl apply -f wrf-arm-pv.yaml #Note: Make sure to change the path variable in this YAML for a actual share directory\
-b. kubectl apply -f wrf-arm-pvc.yaml\
+b. kubectl apply -f wrf-arm-pvc.yaml
 
 ## 2. Create the services for inter-pod comnunication
 a. kubectl apply -f wrf-arm-master-service.yaml\
@@ -11,7 +11,7 @@ c. kubectl apply -f wrf-arm-worker1-service.yaml\
 d. kubectl apply -f wrf-arm-master.yaml\
 e. kubectl apply -f wrf-arm-worker0.yaml\
 f. kubectl apply -f wrf-arm-worker1.yaml\
-g. Wait for about 30 seconds\
+g. Wait for about 30 seconds
 
 ## 3. Configure ssh access to the other pods in wrf-arm-worker0:
 a. kubectl logs wrf-arm-master\
@@ -32,4 +32,4 @@ f. exit\
 ## 5. Copy hosts.txt to the directory used in 1.a.
 
 ## 6. Run WRF:
-a. ./wrf_run_host.sh #Change -np X, where X is the number of tasks\
+a. ./wrf_run_host.sh #Change -np X, where X is the number of tasks
