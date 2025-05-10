@@ -7,7 +7,7 @@ As such, we aim to ease the use of WRF with Docker images on HPC clusters and Cl
 1. Docker: Docker files
 2. Kubernetes: Deployments for using WRF with Kubernetes
 3. Slurm: How to configure and use WRF using Slurm. 
-4. logs: Test results using sample data from NCEP (National Centers for Environment Prediction (NCEP).
+4. logs: Test results using sample data from NCEP (National Centers for Environment Prediction).
 5. scripts: Scripts for General and CSP (Cloud Service Provider) specific (CNCA's (National Center for Advanced Computing) Stratus cloud platform) configuration and WRF execution.
 
 ### The developed Docker images can be found on the following Docker Hub repository: 
